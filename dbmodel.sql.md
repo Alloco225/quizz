@@ -1,6 +1,6 @@
-  -- 
+  -- Modèle de données du Quizz
 
--- Quizz Parseur
+-- Quizz
 create table quizz(
   id int auto_increment,
   nom varchar(50),
@@ -59,10 +59,3 @@ create table composition(
   foreign key(id_exercice) references exercices(id)
 );
 
--- Insertion
-
--- quizz
-insert into quizz(nom)
-  values('Quiz SQL 1');
-
--- exercice
