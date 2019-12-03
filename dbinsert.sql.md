@@ -1,153 +1,51 @@
+
+
+Insert into quizz VALUES (1,'Requetes simple');
+Insert into exercices VALUES (1,'Ecrire une requete pour selectionner toutes les specialités', 5, 'SELECT * FROM specialite', 1 );
+
+Insert into exercices VALUES (2,'Ecrire une requete pour selectionner les spécialités dont le dégré est supérieur à 10', 5, 'SELECT * FROM specialite WHERE degree > 10', 1 );
+
+Insert into tests VALUES (1,'CREATE TABLE specialite (id integer primary key auto_increment, nom_specialite varchar(100), degree integer)',1);
+
+
 ## CORRECTION AKANJI
 
-Insert into quizz(nom) 
+Insert into quizz (nom) 
   VALUES ('Requètes simples');
 
 
-Insert into exercices(enonce, note, sql_reponse, id_quizz) 
+Insert into exercices (enonce, note, sql_reponse, id_quizz) 
   VALUES ('Ecrire une requete pour selectionner toutes les specialités', 5, 'SELECT * FROM specialite;', 1 );
 
-Insert into exercices(enonce, note, sql_reponse, id_quizz) 
+Insert into exercices (enonce, note, sql_reponse, id_quizz) 
   VALUES ('Ecrire une requete pour selectionner les spécialités dont le dégré (Colone "degree") est supérieur à 10', 5, 'SELECT * FROM specialite WHERE degree > 10;', 1 );
 
-
-Insert into tests(table_sql, id_exercice) 
-  VALUES ('CREATE TABLE specialite (id integer primary key auto_increment, nom_specialite varchar(100), degree integer);',1);
-
-##  mxchx
-
-
-insert into quizz(nom) value('Requetes simple');
-
-insert into exercices (enonce,note,sql_reponse,id_quizz) values("calcul le nombre de personne inscrit au cour de l'annee 2019 ",10,"select count(*) from inscrit where annee = 2019 ;",1);
-
-insert into Tests(table_sql,id_exercice) values ("create table inscrit (
-  id int auto_increment primary key,
-  nom varchar(50),
-  prenom varchar(50),
-  ville varchar(50),
-  annee int(20)
-    );",1)
-    
-## WONDJA
 
 Insert into tests (table_sql, id_exercice) 
   VALUES ('CREATE TABLE specialite (id integer primary key auto_increment, nom_specialite varchar(100), degree integer);',1);
 
+## VRAI SIDIK
 
+INSERT INTO quizz(nom) VALUES ("Clients et Commandes");
 
-
-##Dembele  Boukaro Adama
--- Quizz
-create table quizz(
-  id int auto_increment,
-  nom varchar(50),
-  primary key(id)
-);
-
--- Exercices
-create table exercices(
-  id int auto_increment,
-  enonce text,
-  note int,
-  sql_reponse text,
-  id_quizz int,
-  primary key(id),
-  foreign key(id_quizz) references quizz(id)
-);
-
--- Tests
-create table tests(
-  id int auto_increment,
-  table_sql text,
-  id_exercice int,
-  primary key(id),
-  foreign key(id_exercice) references exercices(id)
-);
--- etudiants
-create table etudiants(
-  id int auto_increment,
-  nom varchar(55),
-  prenom varchar(55),
-  sexe varchar(1),
-  age int,
-);
-
--- quizz
-insert into quizz(nom) values('quiz sur les etudiants');
-
--- exercices 
-insert into exercices(enonce, note, sql_reponse,id_quizz) 
-values('selection les noms de toutes les filles',
-       5,'SELECT nom FROM etudiants WHERE sexe=F',
-       1);
-       
-insert into exercices(enonce, note, sql_reponse,id_quizz)
-values('selection les noms de toutes les filles dont leurs age est superieur a 20',
-       5,'SELECT nom FROM etudiants WHERE sexe=F AND age>20',
-       1);
-       
--- tests
-
-insert into tests(table_sql, id_exercice)
-values('etudiants',1);
-insert into tests(table_sql, id_exercice)
-values('vols',2);
-
--- etudiant insert
-insert into etudiants(nom, prenom, sexe, age) values('konan','kouakou','M',22);
-insert into etudiants(nom, prenom, sexe, age) values('kone','Ami','F',21);
-insert into etudiants(nom, prenom, sexe, age) values('kouame','Amena','F',19);
-=======
--- Insert quizz
-
-INSERT INTO quizz(nom) VALUES('Requete simple');
-
-INSERT INTO quizz(nom) VALUES('Requete complexe');
-
--- Exercices
-INSERT INTO exercices(enonce, note, sql_reponse, id_quizz) VALUES('selectionner le nombre total des utilisateurs', 12, 'SELECT count(*) FROM users;', 1);
-
-INSERT INTO exercices(enonce, note, sql_reponse, id_quizz) VALUES('Selectionner le nom et le prenom des utilisateurs dont la note est superieurs ou egale à 14 et ordonnée par note décroissante', 15, 'SELECT users.nom, users.prenom FROM users, exercices WHERE users.id = exercices.id AND exercices.note >= 14 ORDER BY note DESC;', 2);
-
--- Insert tests
-INSERT INTO tests(table_sql, id_exercice) VALUES('create table users(id int auto_increment, nom varchar(10), prenom varchar(30), id_spec int, primary key(id));', 1);
-
-INSERT INTO tests(table_sql, id_exercice) VALUES('create table quizz(id int auto_increment, nom varchar(50) primary key(id); create table exercices(id int auto_increment, enonce text, note int, sql_reponse text, id_quizz int, primary key(id), foreign key(id_quizz) references quizz(id)); create table users(id int auto_increment, nom varchar(10), prenom varchar(30), id_spec int, primary key(id), foreign key(id_spec) references specialites(id));', 2);
-
-=======
-
-## CORRECTION ERIC ALIAS El-Professor
-
-
--- Insert specialites
-INSERT INTO specialites(nom) VALUES('JavaScript');
-
-INSERT INTO specialites(nom) VALUES('BD');
-
-INSERT INTO specialites(nom) VALUES('Xamarin');
-
-INSERT INTO specialites(nom) VALUES('Flutter');
-
-INSERT INTO specialites(nom) VALUES('Réseau');
-INSERT INTO specialites(nom) VALUES('JS');
-
-INSERT INTO specialites(nom) VALUES('FRONT');
-
-INSERT INTO specialites(nom) VALUES('PHOTOSHOP');
-
--- Insert users
-INSERT INTO users(nom, prenom, id_spec) VALUES('Bill', 'Gates', 1);
-
-INSERT INTO users(nom, prenom, id_spec) VALUES('Steve', 'Jobs', 2);
-
-INSERT INTO users(nom, prenom, id_spec) VALUES('Didier', 'Drogba', 3);
-
-INSERT INTO users(nom, prenom, id_spec) VALUES('Samuel', 'Etoo', 4);
-
-INSERT INTO users(nom, prenom, id_spec) VALUES('Cristiano', 'Ronaldo', 5);
-INSERT INTO users(nom, prenom, id_spec) VALUES('Sidibe', 'Ibrahim', 1);
-
-INSERT INTO users(nom, prenom, id_spec) VALUES('Kone', 'Awa', 2);
-
-INSERT INTO users(nom, prenom, id_spec) VALUES('Kouakou', 'Armel', 3);
+INSERT INTO exercices (enonce, note, sql_reponse,id_quizz) VALUES ("Obtenir l’utilisateur ayant le prénom Muriel et le mot de passe test11, sachant que l’encodage du mot de passe est effectué avec l’algorithme Sha1",1, "SELECT * FROM client WHERE prenom = Muriel AND password = SHA1('test11');", 1);
+  
+INSERT INTO tests(table_sql, id_exercice) VALUES (
+  "CREATE TABLE IF NOT EXISTS `client` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `prenom` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `ville` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8; 
+INSERT INTO `client` (`id`, `prenom`, `nom`, `email`, `ville`, `password`) 
+VALUES
+(1, 'Flavie', 'Da costa', 'f.da.costa@example.com', 'Pomoy', 'b444ac06613fc8d63795be9ad0beaf55011936ac'),
+(2, 'Valentin', 'Vespasien', 'valentin@example.com', 'Buvilly', '109f4b3c50d7b0df729d299bc6f8e9ef9066971f'),
+(3, 'Gustave', 'Collin', 'gust@example.com', 'Marseille', '3ebfa301dc59196f18593c45e519287a23297589'),
+(4, 'Emilien', 'Camus', 'emilien@example.com', 'Toulouse', '1ff2b3704aede04eecb51e50ca698efd50a1379b'),
+(5, 'Firmin', 'Marais', 'firmin.marais@example.com', 'Lyon', '911ddc3b8f9a13b5499b6bc4638a2b4f3f68bf23'),
+(6, 'Muriel', 'Dupuis', 'muriel@example.com', 'Paris', '100c4e57374fc998e57164d4c0453bd3a4876a58'),
+;", 1);
