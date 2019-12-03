@@ -23,3 +23,18 @@ Insert into exercices (enonce, note, sql_reponse, id_quizz)
 
 Insert into tests (table_sql, id_exercice) 
   VALUES ('CREATE TABLE specialite (id integer primary key auto_increment, nom_specialite varchar(100), degree integer);',1);
+
+##  mxchx
+
+
+insert into quizz(nom) value('Requetes simple');
+
+insert into exercices (enonce,note,sql_reponse,id_quizz) values("calcul le nombre de personne inscrit au cour de l'annee 2019 ",10,"select count(*) from inscrit where annee = 2019 ;",1);
+
+insert into Tests(table_sql,id_exercice) values ("create table inscrit (
+  id int auto_increment primary key,
+  nom varchar(50),
+  prenom varchar(50),
+  ville varchar(50),
+  annee int(20)
+    );",1)
