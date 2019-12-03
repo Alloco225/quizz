@@ -10,6 +10,15 @@ create table quizz(
 -- Exercices
 create table exercices(
   id int auto_increment,
+  nom varchar(100),
+  sql_creation_insertion text,
+  primary key(id),
+  foreign key(id_quizz) references quizz(id)
+);
+
+-- Questions
+create table questions(
+  id int auto_increment,
   enonce text,
   note int,
   sql_reponse text,
@@ -17,11 +26,13 @@ create table exercices(
   primary key(id),
   foreign key(id_quizz) references quizz(id)
 );
+  
 
 -- Tests
 create table tests(
   id int auto_increment,
-  table_sql text,
+  sql_select text,
+  sql_expected_output text,
   id_exercice int,
   primary key(id),
   foreign key(id_exercice) references exercices(id)
