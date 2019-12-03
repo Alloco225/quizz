@@ -80,7 +80,7 @@ create table specialites(
 
 create table users(
     id int auto_increment primary key,
-    nom varchar(255,
+    nom varchar(255),
     prenom varchar(255),
     id_spec int,
     foreign key(id_spec) references specialites(id)
@@ -92,8 +92,7 @@ create table composition(
     sql_user text,
     temps time,
     success bool,
-    note int
-    primary key(id_user, id_exercice),
+    note int,
     foreign key(id_user) references users(id),
     foreign key(id_exercice) references exercices(id)
 );
@@ -111,7 +110,5 @@ INSERT INTO specialites (nom) VALUES ("BD");
 INSERT INTO exercices (enonce, sql_reponse, note, id_quizz)
 VALUES ("Voici une table des departements avec les champs departement_id, departement_nom, departement_slug de France. Ecrire une requête qui permet d'btenir la liste des départements d’outres-mer, c’est-à-dire ceux dont le numéro de département commencent par '97'", "SELECT departement_nom FROM departement;", 4, 1);
 
-INSERT INTO tests (table_sql, question_id)
-VALUES ("CREATE TABLE IF NOT EXISTS departement ( departement_id int(11) NOT NULL AUTO_INCREMENT, departement_nom       varchar(255), departement_slug varchar(255); INSERT INTO departement (departement_id, departement_nom , departement_slu ) VALUES (1,'Ain', 'ain'), (2, 'Aisne', 'aisne'), (3, 'Allier','allier'), (5,'Hautes-Alpes','hautes-alpes'), (4,'Alpes-de-Haute-Provence','alpes-de-haute-provence'), (6, 'Alpes-Maritimes', 'alpes-maritimes');", 1)
-
-
+INSERT INTO tests (table_sql, id_exercice)
+VALUES ("CREATE TABLE IF NOT EXISTS departement ( departement_id int(11) NOT NULL AUTO_INCREMENT, departement_nom varchar(255), departement_slug varchar(255); INSERT INTO departement (departement_id, departement_nom , departement_slu ) VALUES (1,'Ain', 'ain'), (2, 'Aisne', 'aisne'), (3, 'Allier','allier'), (5,'Hautes-Alpes','hautes-alpes'), (4,'Alpes-de-Haute-Provence','alpes-de-haute-provence'), (6, 'Alpes-Maritimes', 'alpes-maritimes');", 1)
