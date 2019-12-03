@@ -22,16 +22,16 @@ create table questions(
   enonce text,
   note int,
   sql_reponse text,
-  id_quizz int,
+  id_exercice int,
   primary key(id),
-  foreign key(id_quizz) references quizz(id)
+  foreign key(id_exercice) references exercices(id)
 );
   
 
 -- Tests
 create table tests(
   id int auto_increment,
-  sql_select text,
+  sql_input text,
   sql_expected_output text,
   id_exercice int,
   primary key(id),
