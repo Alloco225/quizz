@@ -197,15 +197,75 @@ order by
 
 
 ---------------------------
-
+-- Exercice 5 E10
 -- titre
+mischievousNephews
 -- contenu
+Vos neveux Huey Dewey et Louie restent avec vous pendant les vacances d 'hiver. --' 
+Depuis leur arrivée, vous avez à peine eu une journée sans incident - les petits coquins font tout ce qu' ils veulent !' En fait,
+vous êtes même pas fou; les idées qu 'ils proposent sont assez étonnantes, et il semble qu' il y ait même un système à leur méfait.Vous avez décidé de suivre et d 'analyser leur comportement, vous avez donc créé la table des méfaits dans votre base de données locale. La table comporte les colonnes suivantes: --'
+--
+date_mefait: la date du méfait (du type date);
+auteur: le neveu qui a causé le méfait ("Huey", "Dewey" ou "Louie");
+titre: le titre du méfait.
+--
+Il semble que chacun de vos neveux soit actif un jour spécifique de la semaine. --
+Vous décidez de vérifier votre théorie en créant un autre tableau comme suit:
+
+Le tableau résultant doit contenir quatre colonnes, jour_semaine, date_mefait, auteur et titre, où jour_semaine est le jour de la semaine de date_mefait (0 pour lundi, 1 pour mardi, etc. avec 6 pour dimanche). Le tableau doit être trié par la colonne de jour_semaine, et pour chaque méfait de Huey jour_semaine devrait aller en premier, Dewey devrait aller ensuite, et Louie devrait aller en dernier. En cas d' égalité,
+date_mefait devrait être un bris d 'égalité. le titre doit aller en premier.
+
+Il est garanti que toutes les entrées de méfait sont uniques.
+
+Exemple
+
+Pour le tableau suivant: mefait
+date_mefait auteur titre
+2016-12-01 Dewey Faire cuire le poisson doré dans un seau
+2016-12-01 Dewey Peindre les murs en rose
+2016-12-01 Huey Manger tous les bonbons
+2016-12-01 Louie Envelopper le chat dans du papier toilette
+2016-12-08 Louie Jouer au hockey sur linoléum
+2017-01-01 Huey Briser une fenetre
+2017-02-06 Dewey Créer une patinoire sur le porche
 -- enonce
 -- sql creation
+create table mefait(
+    date_mefait date primary key,
+    auteur varchar(50),
+    titre varchar(255)
+);
+insert into mefait(date_mefait, auteur, titre)
+values 
+('2016-12-01','Dewey','Faire cuire le poisson doré dans un seau'),
+('2016-12-01','Dewey','Peindre les murs en rose'),
+('2016-12-01','Huey','Mange tous les bonbons'),
+('2016-12-01','Louie','Envelopper le chat dans du papier toilette'),
+('2016-12-08','Louie','Jouer au hockey sur linoléum'),
+('2017-01-01','Huey','Briser une vitre'),
+('2017-02-06','Dewey Créer une patinoire sur le porche')
+;
 -- sql depart
+select
+from
+order by
+;
 -- sql reponse
----------------------------
+select
+    weekday(date_mefait) jour_semaine,
+    date_mefait,
+    auteur,
+    titre
+from
+    mefait
+order by
+    jour_semaine,
+    field(auteur, 'Huey', 'Dewey', 'Louie'),
+    date_mefait,
+    titre;
 
+---------------------------
+-- Exercice 6 E11
 -- titre
 -- contenu
 -- enonce
