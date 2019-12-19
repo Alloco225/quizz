@@ -524,11 +524,69 @@ order by
 ---------------------------
 -- Exercice 9 E14
 -- titre
+testCheck --
 -- contenu
--- enonce
+Implémentez le code manquant,
+indiqué par des points de suspension.Vous ne pouvez pas modifier le code préexistant.Votre professeur a donné à la classe une tâche supplémentaire: Écrivez un programme qui vérifiera les réponses pour le dernier test.Le programme recevra un tableau de réponses avec les colonnes suivantes: --
+--
+id: l 'identifiant unique de la question; --';
+reponse_correcte :la bonne réponse à la question,
+donnée sous forme de chaîne;
+
+reponse_donnee :la réponse donnée à la question,
+qui peut être NULL.--
+--
+Votre tâche consiste à renvoyer le tableau avec un identifiant de colonne et une colonne vérifie,
+où pour chaque identifiant de réponse,
+la chaîne suivante doit être renvoyée: "pas de réponse" si la réponse donnée est vide;
+
+"correct" si la réponse donnée est la même que la réponse correcte;
+
+"incorrect" si la donnée donnée n 'est pas vide et est incorrecte.Triez les enregistrements dans le tableau de réponses par identifiant. --' -- enonce
 -- sql creation
+id reponse_correcte reponse_donnee 1 a a 2 b NULL 3 c --
+--
+create table reponses(
+    id int primary key,
+    reponse_correcte varchar(1),
+    reponse_donnee varchar(1)
+)
+insert into
+    reponses(id, reponse_correcte, reponse_donnee)
+values
+    (1, 'a', 'a'),
+    (2, 'b', NULL);
+insert into
+    reponses(id, reponse_correcte)
+values
+    (3, 'c');
+
 -- sql depart
+SELECT
+    id,
+    IF (...) AS checks
+FROM
+    answers
+ORDER BY
+    id;
 -- sql reponse
+CREATE PROCEDURE testCheck()
+SELECT
+    id,
+    IF (
+        reponse_donnee is null,
+        'no answer',
+        if(
+            reponse_donnee = reponse_correcte,
+            'correct',
+            'incorrect'
+        )
+    ) AS checks
+FROM
+    answers
+ORDER BY
+    id;
+
 ---------------------------
 -- Exercice 10 E15
 -- titre
