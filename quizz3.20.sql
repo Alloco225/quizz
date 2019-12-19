@@ -1,5 +1,5 @@
--- Section 2 
--- Exercices
+-- Section 2 Always leave table in order 
+-- Exercices E6
 Exercice 1 -- titre
 volleyBallResults -- enonce
 Vous parcourez régulièrement le Web à la recherche de nouveaux jeux et ajoutez les résultats de ces jeux au tableau des résultats stocké dans Après chaque mise à jour,
@@ -16,7 +16,6 @@ manqué - le nombre de buts manqués;
 victoires - le nombre total de matchs gagnés par l' équipe.Votre tâche consiste à trier le tableau de résultats donné par ordre croissant selon le nombre de victoires;
 
 --sql creation
-
 create table results(
     id int auto_increment primary key,
     nom varchar(50),
@@ -25,6 +24,7 @@ create table results(
     missed int,
     wins int
 );
+
 
 insert into
     results(nom, country, scored, missed, wins)
@@ -46,8 +46,10 @@ from
 order by
     wins;
 
--- Exercice 2
-mostExpensive M.Cash veut garder une trace de ses dépenses,
+-- Exercice 2 E7
+mostExpensive --
+--
+M.Cash veut garder une trace de ses dépenses,
 il a donc préparé une liste de tous les produits qu 'il a achetés ce mois-ci. Maintenant, il est intéressé à trouver le produit sur lequel il a dépensé le plus d' argent.S 'il y a des produits qui coûtent la même somme d' argent,
 il aimerait trouver celui avec le plus petit nom lexicographiquement.La liste des dépenses est stockée dans un tableau Produits qui comporte les colonnes suivantes: id: identifiant unique du produit;
 
@@ -56,10 +58,7 @@ nom: le nom unique du produit;
 prix: le prix d 'un article;
 quantité: le nombre d' articles achetés.Le tableau résultant doit contenir une ligne avec une seule colonne: le produit avec le nom lexicographiquement le plus petit sur lequel M.Cash a dépensé le plus d 'argent.
 
-Le montant total d' argent dépensé pour un produit est calculé en tant que prix * quantité.
-
---
-
+Le montant total d' argent dépensé pour un produit est calculé en tant que prix * quantité.--
 create table Produits(
     id int primary key auto_increment,
     nom varchar(50),
@@ -74,9 +73,7 @@ values
     ('Spray cleaner', 10, 3);
 
 -- sql depart
-
 -- sql reponse
-
 select
     name
 from
@@ -88,27 +85,269 @@ limit
     1;
 
 -- select name from Products order by prix * quantite desc, name asc limit 1;
+-- Exercice 3 E8
+contestLeaderBoard --
+Vous travaillez comme recruteur dans une grande entreprise informatique et vous recherchez activement des candidats qui occupent les premières places dans les grands concours de programmation.du classement et avec succès.Vous avez déjà interviewé tous les lauréats (les 3 meilleurs participants), mais cela ne suffit pas pour le moment.Votre entreprise a besoin de plus de spécialistes, alors maintenant vous souhaitez vous connecter avec les participants qui ont pris les 5 prochaines places.Le classement du concours est stocké dans un classement du tableau avec les colonnes suivantes: --
+id: identifiant unique du participant;
+
+nom: le nom du participant;
+
+score: le score obtenu par le participant au concours.Le tableau résultant devrait contenir les noms des participants qui ont pris la 4e à la 8e place inclusivement,
+triés par ordre décroissant de leur place.--
+S 'il y a moins de 8 participants, les résultats devraient contenir ceux qui se sont classés moins bien que la 3e place. --
+
+Il est garanti qu' il y a au moins 3 gagnants dans le classement et que tous les participants ont des scores différents.--
+-- sql creation
+create table leaderboard(
+    id int primary key auto_increment,
+    name varchar(50),
+    score int
+);
+
+insert into
+    leaderboard(id, name, score)
+values
+    (1, 'gongy', 3001),
+    (2, 'urandom', 2401),
+    (3, 'eduardische', 2477),
+    (4, 'Gassa', 2999),
+    (5, 'bcc32', 2658),
+    (6, 'Alex_2oo8', 6000),
+    (7, 'mirosuaf', 2479),
+    (8, 'Sparik', 2399),
+    (9, 'thomas_holmes', 2478),
+    (10, 'cthaeghya', 2400);
+
+-- sql depart
+select
+from
+order by
+limit
+;
+
+--sql reponse
+select
+    name
+from
+    leaderboard
+order by
+    score desc
+limit
+    3, 5;
+
+-- Exercice 4 E9
+gradeDistribution --
+
+-- contenu
+À la fin de chaque semestre,
+votre professeur « Introduction aux bases de données » enregistre les résultats des examens de chaque étudiant dans un système de base de données simple.Dans le tableau de base de données Grades,
+
+il y a cinq colonnes: --
+
+Name: le nom de l'élève; --'
+ID: le numéro d'identification de l'élève (un entier positif de 5 octets);
+Midterm1: résultat du premier mi-parcours sur 100 points;
+Midterm2: résultat du deuxième mi-parcours sur 100 points;
+Final: résultat de l' examen final, cette fois sur 200 points possibles. '--
+
+Selon la politique de l 'école, il existe trois façons possibles d' évaluer une note: Option 1: Milieu 1: 25 % de la note Mi - parcours 2: 25 % de la note Examen final: 50 % de la note Option 2: Milieu 1: 50 % de la note Mi - parcours 2: 50 % de la note Option 3: Examen final: 100 % de la note.La note finale de chaque élève provient de l 'option qui fonctionne le mieux pour cet élève.
+
+En tant qu' assistant d 'enseignement (TA), vous devez interroger le nom et l' id de tous les élèves dont la meilleure note provient de l 'option 3, triés en fonction des 3 premiers caractères de leur nom.Si les 3 premiers caractères de deux noms sont identiques , l' étudiant ayant la valeur d 'identification la plus faible arrive en premier.';
+
+Exemple
+
+Pour le tableau suivant Grades;
+Name ID Midterm1 Midterm2 Final David 42334 34 54 124 Anthony 54528 100 10 50 Jonathan 58754 49 58 121 Jonty 11000 25 30 180
+
+-- sql creation
+create table Grades(
+    ID int primary key,
+    Name varchar(50),
+    Midterm1 int,
+    Midterm2 int,
+    Final
+);
+
+insert into Grades(Name, ID, Midterm1, Midterm2, Final)
+values
+('David',42334,34,54,124),
+('Anthony',54528,100,10,50),
+('Jonathan',58754,49,58,121),
+('Jonty',11000,25,30,180);
+
+-- sql depart
+select
+from
+where
+order by
+-- sql reponse
+select
+    Name,
+    ID
+from
+    Grades
+where
+    (
+        Final > (Midterm1 / 4 + Midterm2 / 4 + Final / 2)
+        and Final > (Midterm1 / 2 + Midterm2 / 2)
+    )
+order by
+    substr(Name, 1, 3),
+    ID;
 
 
+---------------------------
+-- Exercice 5 E10
+-- titre
+mischievousNephews
+-- contenu
+Vos neveux Huey Dewey et Louie restent avec vous pendant les vacances d 'hiver. --' 
+Depuis leur arrivée, vous avez à peine eu une journée sans incident - les petits coquins font tout ce qu' ils veulent !' En fait,
+vous êtes même pas fou; les idées qu 'ils proposent sont assez étonnantes, et il semble qu' il y ait même un système à leur méfait.Vous avez décidé de suivre et d 'analyser leur comportement, vous avez donc créé la table des méfaits dans votre base de données locale. La table comporte les colonnes suivantes: --'
+--
+date_mefait: la date du méfait (du type date);
+auteur: le neveu qui a causé le méfait ("Huey", "Dewey" ou "Louie");
+titre: le titre du méfait.
+--
+Il semble que chacun de vos neveux soit actif un jour spécifique de la semaine. --
+Vous décidez de vérifier votre théorie en créant un autre tableau comme suit:
 
-## Tim Add Exercice
+Le tableau résultant doit contenir quatre colonnes, jour_semaine, date_mefait, auteur et titre, où jour_semaine est le jour de la semaine de date_mefait (0 pour lundi, 1 pour mardi, etc. avec 6 pour dimanche). Le tableau doit être trié par la colonne de jour_semaine, et pour chaque méfait de Huey jour_semaine devrait aller en premier, Dewey devrait aller ensuite, et Louie devrait aller en dernier. En cas d' égalité,
+date_mefait devrait être un bris d 'égalité. le titre doit aller en premier.
 
+Il est garanti que toutes les entrées de méfait sont uniques.
 
-Exercice1 :
+Exemple
 
- Titre: Liste des projets
+Pour le tableau suivant: mefait
+date_mefait auteur titre
+2016-12-01 Dewey Faire cuire le poisson doré dans un seau
+2016-12-01 Dewey Peindre les murs en rose
+2016-12-01 Huey Manger tous les bonbons
+2016-12-01 Louie Envelopper le chat dans du papier toilette
+2016-12-08 Louie Jouer au hockey sur linoléum
+2017-01-01 Huey Briser une fenetre
+2017-02-06 Dewey Créer une patinoire sur le porche
+-- enonce
+-- sql creation
+create table mefait(
+    date_mefait date primary key,
+    auteur varchar(50),
+    titre varchar(255)
+);
+insert into mefait(date_mefait, auteur, titre)
+values 
+('2016-12-01','Dewey','Faire cuire le poisson doré dans un seau'),
+('2016-12-01','Dewey','Peindre les murs en rose'),
+('2016-12-01','Huey','Mange tous les bonbons'),
+('2016-12-01','Louie','Envelopper le chat dans du papier toilette'),
+('2016-12-08','Louie','Jouer au hockey sur linoléum'),
+('2017-01-01','Huey','Briser une vitre'),
+('2017-02-06','Dewey Créer une patinoire sur le porche')
+;
+-- sql depart
+select
+from
+order by
+;
+-- sql reponse
+select
+    weekday(date_mefait) jour_semaine,
+    date_mefait,
+    auteur,
+    titre
+from
+    mefait
+order by
+    jour_semaine,
+    field(auteur, 'Huey', 'Dewey', 'Louie'),
+    date_mefait,
+    titre;
 
- Enoncé : Votre patron veut identifier les projets réussis en cours dans votre entreprise, il vous a donc demandé de préparer une liste de tous les projets actuellement actifs et de leur revenu mensuel moyen.
+---------------------------
+-- Exercice 6 E11
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
 
-Vous avez stocké les informations sur ces projets dans une base de données simple avec une seule table Projets qui comporte cinq colonnes:
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
 
-internal_id: l'identifiant interne de l'entreprise pour le projet;
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+
+== == == = ## Tim Add Exercice
+Exercice1: Titre: Liste des projets Enoncé: Votre patron veut identifier les projets réussis en cours dans votre entreprise, il vous a donc demandé de préparer une liste de tous les projets actuellement actifs et de leur revenu mensuel moyen.Vous avez stocké les informations sur ces projets dans une base de données simple avec une seule table Projets qui comporte cinq colonnes: internal_id: l 'identifiant interne de l' entreprise pour le projet;
+
 nom_projet: le nom officiel du projet;
-team_size: le nombre d'employés travaillant sur le projet;
+
+team_size: le nombre d 'employés travaillant sur le projet;
 team_lead: le nom du chef de projet;
 revenu: le revenu mensuel moyen du projet.
 
-Question : Votre patron dit que les identifiants de projet internes ne sont pas pertinents pour lui et qu'il n'est pas intéressé par la taille des équipes. Comme c'est le cas, il souhaite que vous créiez une autre table en supprimant les colonnes internal_id et team_size de la table Projects existante. Renvoyez-le trié par internal_id dans l'ordre croissant.
+Question : Votre patron dit que les identifiants de projet internes ne sont pas pertinents pour lui et qu' il n 'est pas intéressé par la taille des équipes. Comme c' est le cas,
+il souhaite que vous créiez une autre table en supprimant les colonnes internal_id et team_size de la table Projects existante.Renvoyez - le trié par internal_id dans l 'ordre croissant.
 
 Voici le contenu de la table 
 internal_id		project_name		team_size		team_lead	revenue
@@ -206,3 +445,4 @@ Sqlreponse:
         continent = 'Africa'
     ORDER BY 
         name;
+=======
