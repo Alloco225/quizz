@@ -148,3 +148,58 @@ Sqlreponse:
     FROM 
         Projects
     ORDER BY internal_id;
+
+
+### Exercice 3: 
+Titre: Bourse d'etude mensuelle
+
+Enoncé :
+Les étudiants de votre université reçoivent des bourses qui sont versées tout au long de l'année.
+
+Les informations sur les bourses sont stockées dans le tableau des bourses, qui a la structure:
+
+id: l'identifiant unique de l'élève;
+bourse: le montant de la bourse annuelle accordée à l'étudiant.
+
+Question :
+Vous devez maintenant calculer le montant que chaque étudiant devrait recevoir par mois. Compte tenu des bourses de la table, créez la table résultante comme suit: La table doit avoir les mêmes colonnes que la table initiale, mais la colonne des bourses doit contenir le montant du versement mensuel de la bourse de l'étudiant. Les rangées doivent être classées selon les identifiants des élèves.
+
+Exemple: Voici le contenu de la table bourse
+
+		id		scholarship
+		1		12000
+		2		18000
+		3		24000	
+		4		15000
+		5		21000
+		6		13000
+
+	--sql creation
+	CREATE TABLE bourse(
+		id INTEGER auto increment,
+		bourse INTEGER
+	);
+
+	insert into bourse values(1,12000),
+		(2,12000),
+		(3,18000),
+		(4,24000),
+		(5,15000),
+		(6,21000),
+		(7,13000);
+
+Sqldepart:
+    SELECT 
+        
+    FROM 
+       
+    ORDER BY ;
+        
+
+Sqlreponse:
+    SELECT 
+        id, scholarship / 12 as scholarship
+    FROM 
+       scholarships
+    ORDER BY 
+        id;
