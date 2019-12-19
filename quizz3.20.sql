@@ -25,6 +25,7 @@ create table results(
     wins int
 );
 
+
 insert into
     results(nom, country, scored, missed, wins)
 values
@@ -135,6 +136,147 @@ limit
     3, 5;
 
 -- Exercice 4 E9
+gradeDistribution --
+
+-- contenu
+À la fin de chaque semestre,
+votre professeur « Introduction aux bases de données » enregistre les résultats des examens de chaque étudiant dans un système de base de données simple.Dans le tableau de base de données Grades,
+
+il y a cinq colonnes: --
+
+Name: le nom de l'élève; --'
+ID: le numéro d'identification de l'élève (un entier positif de 5 octets);
+Midterm1: résultat du premier mi-parcours sur 100 points;
+Midterm2: résultat du deuxième mi-parcours sur 100 points;
+Final: résultat de l' examen final, cette fois sur 200 points possibles. '--
+
+Selon la politique de l 'école, il existe trois façons possibles d' évaluer une note: Option 1: Milieu 1: 25 % de la note Mi - parcours 2: 25 % de la note Examen final: 50 % de la note Option 2: Milieu 1: 50 % de la note Mi - parcours 2: 50 % de la note Option 3: Examen final: 100 % de la note.La note finale de chaque élève provient de l 'option qui fonctionne le mieux pour cet élève.
+
+En tant qu' assistant d 'enseignement (TA), vous devez interroger le nom et l' id de tous les élèves dont la meilleure note provient de l 'option 3, triés en fonction des 3 premiers caractères de leur nom.Si les 3 premiers caractères de deux noms sont identiques , l' étudiant ayant la valeur d 'identification la plus faible arrive en premier.';
+
+Exemple
+
+Pour le tableau suivant Grades;
+Name ID Midterm1 Midterm2 Final David 42334 34 54 124 Anthony 54528 100 10 50 Jonathan 58754 49 58 121 Jonty 11000 25 30 180
+
+-- sql creation
+create table Grades(
+    ID int primary key,
+    Name varchar(50),
+    Midterm1 int,
+    Midterm2 int,
+    Final
+);
+
+insert into Grades(Name, ID, Midterm1, Midterm2, Final)
+values
+('David',42334,34,54,124),
+('Anthony',54528,100,10,50),
+('Jonathan',58754,49,58,121),
+('Jonty',11000,25,30,180);
+
+-- sql depart
+select
+from
+where
+order by
+-- sql reponse
+select
+    Name,
+    ID
+from
+    Grades
+where
+    (
+        Final > (Midterm1 / 4 + Midterm2 / 4 + Final / 2)
+        and Final > (Midterm1 / 2 + Midterm2 / 2)
+    )
+order by
+    substr(Name, 1, 3),
+    ID;
+
+
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+---------------------------
+
+-- titre
+-- contenu
+-- enonce
+-- sql creation
+-- sql depart
+-- sql reponse
+
 == == == = ## Tim Add Exercice
 Exercice1: Titre: Liste des projets Enoncé: Votre patron veut identifier les projets réussis en cours dans votre entreprise, il vous a donc demandé de préparer une liste de tous les projets actuellement actifs et de leur revenu mensuel moyen.Vous avez stocké les informations sur ces projets dans une base de données simple avec une seule table Projets qui comporte cinq colonnes: internal_id: l 'identifiant interne de l' entreprise pour le projet;
 
