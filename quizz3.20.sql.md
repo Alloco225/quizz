@@ -56,3 +56,7 @@ from
 order by
     wins;
 
+
+
+-- Exercice 2
+
