@@ -1,5 +1,5 @@
--- Section 2 
--- Exercices
+-- Section 2 Always leave table in order 
+-- Exercices E6
 Exercice 1 -- titre
 volleyBallResults -- enonce
 Vous parcourez régulièrement le Web à la recherche de nouveaux jeux et ajoutez les résultats de ces jeux au tableau des résultats stocké dans Après chaque mise à jour,
@@ -16,7 +16,6 @@ manqué - le nombre de buts manqués;
 victoires - le nombre total de matchs gagnés par l' équipe.Votre tâche consiste à trier le tableau de résultats donné par ordre croissant selon le nombre de victoires;
 
 --sql creation
-
 create table results(
     id int auto_increment primary key,
     nom varchar(50),
@@ -46,8 +45,10 @@ from
 order by
     wins;
 
--- Exercice 2
-mostExpensive M.Cash veut garder une trace de ses dépenses,
+-- Exercice 2 E7
+mostExpensive --
+--
+M.Cash veut garder une trace de ses dépenses,
 il a donc préparé une liste de tous les produits qu 'il a achetés ce mois-ci. Maintenant, il est intéressé à trouver le produit sur lequel il a dépensé le plus d' argent.S 'il y a des produits qui coûtent la même somme d' argent,
 il aimerait trouver celui avec le plus petit nom lexicographiquement.La liste des dépenses est stockée dans un tableau Produits qui comporte les colonnes suivantes: id: identifiant unique du produit;
 
@@ -56,10 +57,7 @@ nom: le nom unique du produit;
 prix: le prix d 'un article;
 quantité: le nombre d' articles achetés.Le tableau résultant doit contenir une ligne avec une seule colonne: le produit avec le nom lexicographiquement le plus petit sur lequel M.Cash a dépensé le plus d 'argent.
 
-Le montant total d' argent dépensé pour un produit est calculé en tant que prix * quantité.
-
---
-
+Le montant total d' argent dépensé pour un produit est calculé en tant que prix * quantité.--
 create table Produits(
     id int primary key auto_increment,
     nom varchar(50),
@@ -74,9 +72,7 @@ values
     ('Spray cleaner', 10, 3);
 
 -- sql depart
-
 -- sql reponse
-
 select
     name
 from
@@ -88,3 +84,57 @@ limit
     1;
 
 -- select name from Products order by prix * quantite desc, name asc limit 1;
+
+-- Exercice 3 E8
+contestLeaderBoard --
+Vous travaillez comme recruteur dans une grande entreprise informatique et vous recherchez activement des candidats qui occupent les premières places dans les grands concours de programmation.du classement et avec succès.Vous avez déjà interviewé tous les lauréats (les 3 meilleurs participants), mais cela ne suffit pas pour le moment.Votre entreprise a besoin de plus de spécialistes, alors maintenant vous souhaitez vous connecter avec les participants qui ont pris les 5 prochaines places.Le classement du concours est stocké dans un classement du tableau avec les colonnes suivantes: --
+id: identifiant unique du participant;
+
+nom: le nom du participant;
+
+score: le score obtenu par le participant au concours.Le tableau résultant devrait contenir les noms des participants qui ont pris la 4e à la 8e place inclusivement,
+triés par ordre décroissant de leur place.--
+S 'il y a moins de 8 participants, les résultats devraient contenir ceux qui se sont classés moins bien que la 3e place. --
+
+Il est garanti qu' il y a au moins 3 gagnants dans le classement et que tous les participants ont des scores différents.--
+-- sql creation
+create table leaderboard(
+    id int primary key auto_increment,
+    name varchar(50),
+    score int
+);
+
+insert into
+    leaderboard(id, name, score)
+values
+    (1, 'gongy', 3001),
+    (2, 'urandom', 2401),
+    (3, 'eduardische', 2477),
+    (4, 'Gassa', 2999),
+    (5, 'bcc32', 2658),
+    (6, 'Alex_2oo8', 6000),
+    (7, 'mirosuaf', 2479),
+    (8, 'Sparik', 2399),
+    (9, 'thomas_holmes', 2478),
+    (10, 'cthaeghya', 2400);
+
+-- sql depart
+select
+from
+order by
+limit
+;
+
+--sql reponse
+select
+    name
+from
+    leaderboard
+order by
+    score desc
+limit
+    3, 5;
+
+
+-- Exercice 4 E9
+
