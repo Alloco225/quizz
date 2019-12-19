@@ -110,10 +110,11 @@ revenu: le revenu mensuel moyen du projet.
 
 Question : Votre patron dit que les identifiants de projet internes ne sont pas pertinents pour lui et qu'il n'est pas intéressé par la taille des équipes. Comme c'est le cas, il souhaite que vous créiez une autre table en supprimant les colonnes internal_id et team_size de la table Projects existante. Renvoyez-le trié par internal_id dans l'ordre croissant.
 
-id				nom_projet		taille_equipe	team_lead		income
-1384			MapReduce		100				Jeffrey Dean	0
-2855			Windows			1000			Bill Gates		100500
-5961			Snapchat		3				Evan Spiegel	2000
+Voici le contenu de la table 
+internal_id		project_name		team_size		team_lead	revenue
+1384			MapReduce		100			Jeffrey Dean	0
+2855			Windows			1000			Bill Gates	100500
+5961			Snapchat		3			Evan Spiegel	2000
 
 
 Exemple: 
@@ -128,8 +129,8 @@ Exemple:
 	);
 
 	INSERT INTO Projects VALUES (1384, "MapReduce",100,"Jeffrey Dean",0),
-								(2855, "Windows",1000,"Bill Gates",100500),
-								(5961, "Snapchat",3,"Evan Spiegel",2000);
+				(2855, "Windows",1000,"Bill Gates",100500),
+				(5961, "Snapchat",3,"Evan Spiegel",2000);
 
 
 Sqldepart: 
@@ -148,3 +149,60 @@ Sqlreponse:
     FROM 
         Projects
     ORDER BY internal_id;
+
+
+### Exercice 2: 
+Titre: Selection des pays
+
+Enoncé :
+Votre ami veut devenir guide professionnel et voyager dans le monde entier. Dans la poursuite de ce rêve, elle s'est inscrite à l'école des guides touristiques. Les professeurs de cette école se sont avérés très exigeants, et l'un d'eux a confié à votre amie une tâche difficile qu'elle doit terminer au cours du week-end.
+Voici la tâche: étant donné une liste de pays, votre ami devrait identifier tous les pays qui sont en Afrique. Pour l'aider, vous avez décidé d'écrire une fonction qui trouvera tous ces pays de n'importe quel ensemble de pays. La table des pays dans laquelle les pays sont stockés a la structure suivante:
+nom: le nom du pays;
+continent: le continent sur lequel le pays est situé;
+population: la population du pays.
+
+Question : Votre tâche consiste à renvoyer un nouveau tableau qui a les mêmes colonnes, mais qui ne contient que les pays d'Afrique. Les pays doivent être classés par ordre alphabétique selon leur nom.
+
+Exemple:
+
+Voici le contenu de la table pays
+
+nom				continent			population
+Austria				Europe				8767919
+Belize				North America			375909
+Botswana			Africa				2230905
+Cambodia			Asia				15626444
+Cameroon			Africa				22709892
+
+--sql creation
+	CREATE TABLE pays(
+		id INTEGER auto increment,
+		nom varchar(200),
+		continent varchar(200),
+		population INTEGER
+	);
+	
+	insert into pays values("Austria","Europe",8767919),
+		("Belize","North America",375909),
+		("Botswana","Africa",2230905),
+		("Cambodia","Asia",15626444),
+		("Cameroon","Africa",22709892);
+
+
+Sqldepart:
+
+    SELECT 
+        
+    WHERE 
+        
+    ORDER BY ;
+
+
+Sqlreponse:
+    SELECT *
+    FROM 
+        countries 
+    WHERE 
+        continent = 'Africa'
+    ORDER BY 
+        name;
