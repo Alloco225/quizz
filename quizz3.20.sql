@@ -87,7 +87,13 @@ limit
 -- select name from Products order by prix * quantite desc, name asc limit 1;
 -- Exercice 3 E8
 contestLeaderBoard --
-Vous travaillez comme recruteur dans une grande entreprise informatique et vous recherchez activement des candidats qui occupent les premières places dans les grands concours de programmation.du classement et avec succès.Vous avez déjà interviewé tous les lauréats (les 3 meilleurs participants), mais cela ne suffit pas pour le moment.Votre entreprise a besoin de plus de spécialistes, alors maintenant vous souhaitez vous connecter avec les participants qui ont pris les 5 prochaines places.Le classement du concours est stocké dans un classement du tableau avec les colonnes suivantes: --
+Vous travaillez comme recruteur dans une grande entreprise informatique 
+et vous recherchez activement des candidats qui occupent les premières places 
+dans les grands concours de programmation.du classement et avec succès.
+Vous avez déjà interviewé tous les lauréats (les 3 meilleurs participants), 
+mais cela ne suffit pas pour le moment.Votre entreprise a besoin de plus de spécialistes, 
+alors maintenant vous souhaitez vous connecter avec les participants qui ont pris les 5 prochaines places.
+Le classement du concours est stocké dans un classement du tableau avec les colonnes suivantes: --
 id: identifiant unique du participant;
 
 nom: le nom du participant;
@@ -150,14 +156,37 @@ Midterm1: résultat du premier mi-parcours sur 100 points;
 Midterm2: résultat du deuxième mi-parcours sur 100 points;
 Final: résultat de l' examen final, cette fois sur 200 points possibles. '--
 
-Selon la politique de l 'école, il existe trois façons possibles d' évaluer une note: Option 1: Milieu 1: 25 % de la note Mi - parcours 2: 25 % de la note Examen final: 50 % de la note Option 2: Milieu 1: 50 % de la note Mi - parcours 2: 50 % de la note Option 3: Examen final: 100 % de la note.La note finale de chaque élève provient de l 'option qui fonctionne le mieux pour cet élève.
+Selon la politique de l 'école, 
+il existe trois façons possibles d' évaluer une note: 
 
-En tant qu' assistant d 'enseignement (TA), vous devez interroger le nom et l' id de tous les élèves dont la meilleure note provient de l 'option 3, triés en fonction des 3 premiers caractères de leur nom.Si les 3 premiers caractères de deux noms sont identiques , l' étudiant ayant la valeur d 'identification la plus faible arrive en premier.';
+Option 1: 
+Milieu 1: 25 % de la note 
+Mi - parcours 2: 25 % de la note 
+Examen final: 50 % de la note 
+
+Option 2: 
+Milieu 1: 50 % de la note 
+Mi - parcours 2: 50 % de la note 
+
+Option 3: 
+Examen final: 100 % de la note.
+La note finale de chaque élève provient de l 'option qui fonctionne le mieux pour cet élève.
+
+En tant qu' assistant d 'enseignement (TA), 
+vous devez interroger le nom 
+et l' id de tous les élèves dont la meilleure note provient de l 'option 3, 
+triés en fonction des 3 premiers caractères de leur nom.
+Si les 3 premiers caractères de deux noms sont identiques , 
+l' étudiant ayant la valeur d 'identification la plus faible arrive en premier.';
 
 Exemple
 
 Pour le tableau suivant Grades;
-Name ID Midterm1 Midterm2 Final David 42334 34 54 124 Anthony 54528 100 10 50 Jonathan 58754 49 58 121 Jonty 11000 25 30 180
+Name ID Midterm1 Midterm2 Final 
+David 42334 34 54 124 
+Anthony 54528 100 10 50 
+Jonathan 58754 49 58 121 
+Jonty 11000 25 30 180
 
 -- sql creation
 create table Grades(
@@ -390,6 +419,61 @@ Sqlreponse:
     ORDER BY internal_id;
 
 
+### Exercice 3: 
+Titre: Bourse d'etude mensuelle
+
+Enoncé :
+Les étudiants de votre université reçoivent des bourses qui sont versées tout au long de l'année.
+
+Les informations sur les bourses sont stockées dans le tableau des bourses, qui a la structure:
+
+id: l'identifiant unique de l'élève;
+bourse: le montant de la bourse annuelle accordée à l'étudiant.
+
+Question :
+Vous devez maintenant calculer le montant que chaque étudiant devrait recevoir par mois. Compte tenu des bourses de la table, créez la table résultante comme suit: La table doit avoir les mêmes colonnes que la table initiale, mais la colonne des bourses doit contenir le montant du versement mensuel de la bourse de l'étudiant. Les rangées doivent être classées selon les identifiants des élèves.
+
+Exemple: Voici le contenu de la table bourse
+
+		id		scholarship
+		1		12000
+		2		18000
+		3		24000	
+		4		15000
+		5		21000
+		6		13000
+
+	--sql creation
+	CREATE TABLE bourse(
+		id INTEGER auto increment,
+		bourse INTEGER
+	);
+
+	insert into bourse values(1,12000),
+		(2,12000),
+		(3,18000),
+		(4,24000),
+		(5,15000),
+		(6,21000),
+		(7,13000);
+
+Sqldepart:
+    SELECT 
+        
+    FROM 
+       
+    ORDER BY ;
+        
+
+Sqlreponse:
+    SELECT 
+        id, scholarship / 12 as scholarship
+    FROM 
+       scholarships
+    ORDER BY 
+        id;
+      
+      
 ### Exercice 2: 
 Titre: Selection des pays
 
@@ -445,4 +529,3 @@ Sqlreponse:
         continent = 'Africa'
     ORDER BY 
         name;
-=======
