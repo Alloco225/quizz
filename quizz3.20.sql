@@ -529,3 +529,70 @@ Sqlreponse:
         continent = 'Africa'
     ORDER BY 
         name;
+	
+	
+
+### Exercice 4: 
+Titre: Equipes de projets
+
+-- Enoncé :
+Vous avez été promu et affecté à un nouveau projet. Le problème est que vous ne savez pas avec qui vous travaillez et que votre prédécesseur a disparu sans laisser de trace! Heureusement, chaque projet de votre entreprise conserve sa propre base de données d'activités que vous allez utiliser pour connaître les noms de vos nouveaux collègues.
+
+Les informations sur l'activité du projet sont stockées dans la table projectLog, qui a la structure suivante:
+
+id: identifiant d'action unique;
+nom: le nom de la personne qui a effectué l'action;
+description: la description de l'action;
+horodatage: l'horodatage de l'action.
+Vous n'avez accès qu'à l'historique le plus récent du projet, mais cela devrait vous suffire. Vous avez décidé que trouver la meilleure personne pour interagir avec le projet pendant cette période était la meilleure façon de commencer.
+
+
+-- Question :
+Étant donné la table projectLog, créez une nouvelle table de résultats avec une seule colonne de nom qui contient les noms des contributeurs du projet triés par ordre croissant.
+
+-- Exemple: 
+Voici le contenue de la table projetLog
+id		nom				description				
+1		James Smith			ajouter un nouveau logo			
+2		John Johnson			mettre à jour la licence			
+3		John Johnson			corriger les fautes de frappe				
+4		James Smith			mettre à jour le logo				
+5		James Smith			supprimer l ancien logo			
+6		Michael Williams		réparer la construction	 		
+7		Mary Troppins			ajouter une nouvelle fonctionnalité		
+8		James Smith			corriger les polices				
+9		Richard Young			supprimer les fichiers inutiles	
+10		Michael Williams		ajouter des tests				
+
+--sql creation
+	create table projectLog (
+		id INTEGER auto increment,
+		nom varchar(200),
+		description varchar(250)
+	);
+
+	insert into projectLog values (1,"James Smith","ajouter un nouveau logo"),
+		(2,"John Johnson","mettre à jour la licence"),
+		(3,"John Johnson","corriger les fautes de frappe"),
+		(4,"James Smith","mettre à jour le logo"),
+		(5,"James Smith","supprimer l ancien logo"),
+		(6,"Michael Williams","réparer la construction"),
+		(7,"Mary Troppins","ajouter une nouvelle fonctionnalité"),
+		(8,"James Smith","corriger les polices"),
+		(9,"Richard Young","supprimer les fichiers inutiles"),
+		(10,"Michael Williams","ajouter des tests");
+
+-- Sqldepart:
+SELECT DISTINCT
+         
+    FROM
+        
+    ORDER BY ;
+
+-- Sqlreponse:
+SELECT DISTINCT
+        nom 
+    FROM
+        projectLog
+    ORDER BY 
+        nom;
