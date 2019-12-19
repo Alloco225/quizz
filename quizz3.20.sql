@@ -2,13 +2,13 @@
 -- Exercices E6
 Exercice 1 -- titre
 volleyBallResults -- enonce
-Vous parcourez régulièrement le Web à la recherche de nouveaux jeux et ajoutez les résultats de ces jeux au tableau des résultats stocké dans Après chaque mise à jour,
+Au service Vous parcourez régulièrement le Web à la recherche de nouveaux jeux et ajoutez les résultats de ces jeux au tableau des résultats stocké dans une base de donnée.Après chaque mise à jour,
 le tableau doit être trié par ordre croissant par le nombre total de matchs gagnés.Les résultats de cette année sont assez merveilleux - à tout moment,
 il n 'y a pas deux équipes qui ont remporté le même nombre de matchs!
 
 Le tableau des résultats contient les colonnes suivantes:
 
-nom - le nom unique de l' équipe;
+nom : le nom unique de l' équipe;
 
 pays - le pays de l 'équipe;
 marqué-le nombre de buts marqués;
@@ -16,17 +16,17 @@ manqué - le nombre de buts manqués;
 victoires - le nombre total de matchs gagnés par l' équipe.Votre tâche consiste à trier le tableau de résultats donné par ordre croissant selon le nombre de victoires;
 
 --sql creation
-create table results(
+create table resultats(
     id int auto_increment primary key,
     nom varchar(50),
-    country varchar(50),
-    scored int,
-    missed int,
-    wins int
+    pays varchar(50),
+    marques int,
+    manques int,
+    victoires int
 );
 
 insert into
-    results(nom, country, scored, missed, wins)
+    resultats(nom, pays, marques, manques, victoires)
 values
     ('FC Tokyo', 'Japan', 26, 28, 1),
     ('Fujian', 'China', 24, 26, 0),
@@ -41,7 +41,7 @@ order by
 select
     *
 from
-    results
+    resultats
 order by
     wins;
 
@@ -50,17 +50,18 @@ mostExpensive --
 --
 M.Cash veut garder une trace de ses dépenses,
 il a donc préparé une liste de tous les produits qu 'il a achetés ce mois-ci. Maintenant, il est intéressé à trouver le produit sur lequel il a dépensé le plus d' argent.S 'il y a des produits qui coûtent la même somme d' argent,
-il aimerait trouver celui avec le plus petit nom lexicographiquement.La liste des dépenses est stockée dans un tableau Produits qui comporte les colonnes suivantes: id: identifiant unique du produit;
+il aimerait trouver celui avec le plus petit nom.La liste des dépenses est stockée dans un tableau Produits qui comporte les colonnes suivantes: id: identifiant unique du produit;
 
 nom: le nom unique du produit;
 
 prix: le prix d 'un article;
-quantité: le nombre d' articles achetés.Le tableau résultant doit contenir une ligne avec une seule colonne: le produit avec le nom lexicographiquement le plus petit sur lequel M.Cash a dépensé le plus d 'argent.
+quantité: le nombre d' articles achetés.Le tableau résultant doit contenir une ligne avec une seule colonne: le produit avec le nom le plus petit sur lequel M.Cash a dépensé le plus d 'argent.
 
 Le montant total d' argent dépensé pour un produit est calculé en tant que prix * quantité.--
 create table Produits(
     id int primary key auto_increment,
     nom varchar(50),
+    prix int,
     quantite int
 );
 
@@ -72,21 +73,27 @@ values
     ('Spray cleaner', 10, 3);
 
 -- sql depart
+select
+from
+order by
+limit
+;
+
 -- sql reponse
 select
-    name
+    nom
 from
     Produits
 order by
     prix * quantite desc,
-    name asc
+    nom asc
 limit
     1;
 
--- select name from Products order by prix * quantite desc, name asc limit 1;
+-- select nom from Products order by prix * quantite desc, nom asc limit 1;
 -- Exercice 3 E8
 contestLeaderBoard --
-Vous travaillez comme recruteur dans une grande entreprise informatique et vous recherchez activement des candidats qui occupent les premières places dans les grands concours de programmation.du classement et avec succès.Vous avez déjà interviewé tous les lauréats (les 3 meilleurs participants), mais cela ne suffit pas pour le moment.Votre entreprise a besoin de plus de spécialistes, alors maintenant vous souhaitez vous connecter avec les participants qui ont pris les 5 prochaines places.Le classement du concours est stocké dans un classement du tableau avec les colonnes suivantes: --
+Vous travaillez comme recruteur dans une grande entreprise informatique et vous recherchez activement des candidats qui occupent les premières places dans les grands concours de programmation.du classement et avec succès.Vous avez déjà interviewé tous les lauréats (les 3 meilleurs participants), mais cela ne suffit pas pour le moment.Votre entreprise a besoin de plus de spécialistes, alors maintenant vous souhaitez vous connecter avec les participants qui ont pris les 5 prochaines places.Le classement du concours est stocké dans une table classement avec les colonnes suivantes: --
 id: identifiant unique du participant;
 
 nom: le nom du participant;
@@ -97,14 +104,14 @@ S 'il y a moins de 8 participants, les résultats devraient contenir ceux qui se
 
 Il est garanti qu' il y a au moins 3 gagnants dans le classement et que tous les participants ont des scores différents.--
 -- sql creation
-create table leaderboard(
+create table classement(
     id int primary key auto_increment,
-    name varchar(50),
+    nom varchar(50),
     score int
 );
 
 insert into
-    leaderboard(id, name, score)
+    classement(id, nom, score)
 values
     (1, 'gongy', 3001),
     (2, 'urandom', 2401),
@@ -126,9 +133,9 @@ limit
 
 --sql reponse
 select
-    name
+    nom
 from
-    leaderboard
+    classement
 order by
     score desc
 limit
@@ -137,16 +144,18 @@ limit
 -- Exercice 4 E9
 gradeDistribution --
 -- contenu
-À la fin de chaque semestre, votre professeur « Introduction aux bases de données » enregistre les résultats des examens de chaque étudiant dans un système de base de données simple.Dans le tableau de base de données Grades, il y a cinq colonnes: --
-Name: le nom de l 'élève; --' ID: le numéro d 'identification de l' élève (un entier positif de 5 octets);
+À la fin de chaque semestre, votre professeur d '' « Introduction aux bases de données » enregistre les résultats des examens de chaque étudiant dans un système de base de données simple.Dans le tableau de base de données Moyennes, il y a cinq colonnes: --
+Nom: le nom de l '' élève;
 
-Midterm1: résultat du premier mi - parcours sur 100 points;
+ID: le numéro d '' identification de l '' élève (un entier positif de 5 octets);
 
-Midterm2: résultat du deuxième mi - parcours sur 100 points;
+Semestre1: résultat du premier mi - parcours sur 100 points;
+
+Semestre2: résultat du deuxième mi - parcours sur 100 points;
 
 Final: résultat de l ' examen final, cette fois sur 200 points possibles. ' --
 Selon la politique de l 'école, 
-il existe trois façons possibles d' évaluer une note: Option 1: Milieu 1: 25 % de la note Mi - parcours 2: 25 % de la note Examen final: 50 % de la note Option 2: Milieu 1: 50 % de la note Mi - parcours 2: 50 % de la note Option 3: Examen final: 100 % de la note.La note finale de chaque élève provient de l 'option qui fonctionne le mieux pour cet élève.
+il existe trois façons possibles d' évaluer une note: Option 1: Semestre 1: 25 % de la note Mi - parcours 2: 25 % de la note Examen final: 50 % de la note Option 2: Semestre 1: 50 % de la note Mi - parcours 2: 50 % de la note Option 3: Examen final: 100 % de la note.La note finale de chaque élève provient de l 'option qui fonctionne le mieux pour cet élève.
 
 En tant qu' assistant d 'enseignement (TA), 
 vous devez interroger le nom 
@@ -155,19 +164,57 @@ triés en fonction des 3 premiers caractères de leur nom.
 Si les 3 premiers caractères de deux noms sont identiques , 
 l' étudiant ayant la valeur d 'identification la plus faible arrive en premier.';
 
-Exemple Pour le tableau suivant Grades;
+--
+À la fin de chaque semestre,
+votre professeur de bases de données enregistre les résultats des examens de chaque étudiant dans un système de base de données simple.Dans la table Moyennes,
+il y a cinq colonnes: Nom: le nom de l 'élève;
 
-Name ID Midterm1 Midterm2 Final David 42334 34 54 124 Anthony 54528 100 10 50 Jonathan 58754 49 58 121 Jonty 11000 25 30 180 -- sql creation
-create table Grades(
+ID: le numéro d' identification de l 'élève (un entier positif de 5 octets);
+
+Semestre1: résultat du premier semestre sur 100 points;
+
+Semestre2: résultat du deuxième semestre sur 100 points;
+
+Final: résultat de l' examen final,
+cette fois sur 200 points;
+
+Selon la politique de l 'école, il existe trois façons possibles de calculer les moyennes:
+
+Option 1:
+
+Semestre 1: 25% de la moyenne
+
+Semestre 2: 25 % de la moyenne
+
+Final: 50 % de la moyenne
+
+Option 2:
+
+Semestre 1: 50 % de la moyenne
+
+Semestre 2: 50 % de la moyenne
+
+Option 3:
+
+Final: 100 % de la moyenne.
+
+La moyenne de chaque élève provient de l ' option qui fonctionne le mieux pour cet élève.En tant qu 'assistant d' enseignement,
+vous devez interroger le nom et l 'id de tous les élèves dont la meilleure note provient de l' option 3,
+triés en fonction des 3 premiers caractères de leur nom.Si les 3 premiers caractères de deux noms sont identiques,
+l 'étudiant ayant l' id la plus faible arrive en premier.--
+Exemple Pour le tableau suivant Moyennes;
+
+Nom ID Semestre1 Semestre2 Final David 42334 34 54 124 Anthony 54528 100 10 50 Jonathan 58754 49 58 121 Jonty 11000 25 30 180 -- sql creation
+create table Moyennes(
     ID int primary key,
-    Name varchar(50),
-    Midterm1 int,
-    Midterm2 int,
-    Final
+    Nom varchar(50),
+    Semestre1 int,
+    Semestre2 int,
+    Final int
 );
 
 insert into
-    Grades(Name, ID, Midterm1, Midterm2, Final)
+    Moyennes(Nom, ID, Semestre1, Semestre2, Final)
 values
     ('David', 42334, 34, 54, 124),
     ('Anthony', 54528, 100, 10, 50),
@@ -181,17 +228,17 @@ where
 order by
     -- sql reponse
 select
-    Name,
+    Nom,
     ID
 from
-    Grades
+    Moyennes
 where
     (
-        Final > (Midterm1 / 4 + Midterm2 / 4 + Final / 2)
-        and Final > (Midterm1 / 2 + Midterm2 / 2)
+        Final > (Semestre1 / 4 + Semestre2 / 4 + Final / 2)
+        and Final > (Semestre1 / 2 + Semestre2 / 2)
     )
 order by
-    substr(Name, 1, 3),
+    substr(Nom, 1, 3),
     ID;
 
 ---------------------------
@@ -224,7 +271,7 @@ et Louie devrait aller en dernier.En cas d ' égalité,
 date_mefait devrait être un bris d ' égalité.le titre doit aller en premier.Il est garanti que toutes les entrées de méfait sont uniques.Exemple Pour le tableau suivant: mefait date_mefait auteur titre 2016 -12 -01 Dewey Faire cuire le poisson doré dans un seau 2016 -12 -01 Dewey Peindre les murs en rose 2016 -12 -01 Huey Manger tous les bonbons 2016 -12 -01 Louie Envelopper le chat dans du papier toilette 2016 -12 -08 Louie Jouer au hockey sur linoléum 2017 -01 -01 Huey Briser une fenetre 2017 -02 -06 Dewey Créer une patinoire sur le porche -- enonce
 -- sql creation
 create table mefait(
-    date_mefait date primary key,
+    date_mefait date,
     auteur varchar(50),
     titre varchar(255)
 );
@@ -256,7 +303,8 @@ values
     ('2017-01-01', 'Huey', 'Briser une vitre'),
     (
         '2017-02-06',
-        'Dewey Créer une patinoire sur le porche'
+        'Dewey',
+        'Créer une patinoire sur le porche'
     );
 
 -- sql depart
@@ -285,24 +333,22 @@ order by
 suspectInvestigation -- contenu
 Une grande quantité d 'argent a été volée aujourd' hui à la banque principale de la ville,
 et en tant que chef de la police,
-il est de votre devoir de trouver le voleur.Vous stockez des informations sur vos suspects dans le tableau Suspect,
-qui a la structure: id: identifiant suspect unique;
+il est de votre devoir de trouver le voleur.Vous stockez des informations sur vos suspects dans la table Suspect,
+qui a la structure: id: identifiant unique du suspect;
 
-nom: prénom suspect;
+nom: prénom du suspect;
 
-nom_de_famille: nom de famille suspect;
+nom_de_famille: nom de famille du suspect;
 
-taille: taille suspect;
+taille: taille du suspect;
 
-poids: poids suspect.--
+poids: poids du suspect.--
 Vous avez déjà rassemblé des preuves et découvert les indices suivants: selon les enregistrements de la caméra,
 le voleur ne mesure pas plus de 170 cm;
 
-le voleur a laissé sa signature près de la scène du crime: "B. Gre?n".--
-"B" représente certainement la première lettre du nom du voleur,
-et "Gre?n" est leur nom de famille.La 4e lettre du nom de famille est taché de ketchup et est illisible.--
-Pour réduire la liste des suspects,
-vous souhaitez filtrer les suspects qui ne peuvent pas être coupables selon les informations obtenues à partir des indices.Veuillez noter que les informations obtenues à partir de l 'indice doivent être considérées comme insensibles à la casse. Par exemple, "facture verte", "facture verte" et "facture verte" doivent tous être inclus dans le nouveau tableau.
+le voleur a laissé sa signature près de la scène du crime: "B. Gre?n"."B" représente certainement la première lettre du nom du voleur,
+et "Gre?n" est son nom de famille.La 4e lettre du nom de famille est taché de ketchup et est illisible.Pour réduire la liste des suspects,
+vous souhaitez filtrer les suspects qui ne peuvent pas être coupables selon les informations obtenues à partir des indices.Veuillez noter que les informations obtenues à partir de l 'indice doivent être considérées comme insensibles à la casse. Par exemple, "GREEN", "green" et "GreEn" doivent tous être inclus dans le nouveau tableau.
 
 Étant donné la table Suspect, créez la table résultante comme suit: la table doit avoir les colonnes id, nom et nom_de_famille et ses valeurs doivent être ordonnées par les identifiants des suspects dans l' ordre croissant.--
 Exemple Pour le tableau suivant Suspect -- enonce
@@ -334,13 +380,13 @@ where
     -- sql reponse
 select
     id,
-    name,
+    nom,
     surname
 from
     Suspect
 where
     height <= 170
-    and name like 'B%'
+    and nom like 'B%'
     and surname like 'Gre_n';
 
 ---------------------------
@@ -379,7 +425,7 @@ son nom et son prénom.Veuillez noter que les informations obtenues à partir de
 créez la table résultante comme suit: la table doit avoir les colonnes id,
 nom et nom_de_famille et ses valeurs doivent être ordonnées par les identifiants des suspects dans l 'ordre croissant.  --' Exemple Pour le tableau suivant de Suspect: -- enonce
 -- sql creation
-id name nom_de_famille taille weight 1 John Doe 165 60 2 Bill Green 170 67 3 Baelfire Grehn 172 70 4 Bill Gretan 185 55 5 Brendon Grewn 180 50 6 bill Green 172 50 create table Suspect(id int primary key,) -- sql depart
+id nom nom_de_famille taille weight 1 John Doe 165 60 2 Bill Green 170 67 3 Baelfire Grehn 172 70 4 Bill Gretan 185 55 5 Brendon Grewn 180 50 6 bill Green 172 50 create table Suspect(id int primary key,) -- sql depart
 select
 from
 where
@@ -529,13 +575,18 @@ testCheck --
 Implémentez le code manquant,
 indiqué par des points de suspension.Vous ne pouvez pas modifier le code préexistant.Votre professeur a donné à la classe une tâche supplémentaire: Écrivez un programme qui vérifiera les réponses pour le dernier test.Le programme recevra un tableau de réponses avec les colonnes suivantes: --
 --
-id: l 'identifiant unique de la question; --';
+id: l '' identifiant unique de la question;
+
 reponse_correcte :la bonne réponse à la question,
 donnée sous forme de chaîne;
 
 reponse_donnee :la réponse donnée à la question,
 qui peut être NULL.--
 --
+--
+---
+---
+---
 Votre tâche consiste à renvoyer le tableau avec un identifiant de colonne et une colonne vérifie,
 où pour chaque identifiant de réponse,
 la chaîne suivante doit être renvoyée: "pas de réponse" si la réponse donnée est vide;
@@ -550,12 +601,14 @@ create table reponses(
     id int primary key,
     reponse_correcte varchar(1),
     reponse_donnee varchar(1)
-)
+);
+
 insert into
     reponses(id, reponse_correcte, reponse_donnee)
 values
     (1, 'a', 'a'),
     (2, 'b', NULL);
+
 insert into
     reponses(id, reponse_correcte)
 values
@@ -566,9 +619,10 @@ SELECT
     id,
     IF (...) AS checks
 FROM
-    answers
+    reponses
 ORDER BY
     id;
+
 -- sql reponse
 CREATE PROCEDURE testCheck()
 SELECT
@@ -583,7 +637,7 @@ SELECT
         )
     ) AS checks
 FROM
-    answers
+    reponses
 ORDER BY
     id;
 
@@ -624,20 +678,25 @@ ORDER BY
 -- sql depart
 -- sql reponse
 == == == = ## Tim Add Exercice
-Exercice1: Titre: Liste des projets Enoncé: Votre patron veut identifier les projets réussis en cours dans votre entreprise,
-il vous a donc demandé de préparer une liste de tous les projets actuellement actifs et de leur revenu mensuel moyen.Vous avez stocké les informations sur ces projets dans une base de données simple avec une seule table Projets qui comporte cinq colonnes: internal_id: l 'identifiant interne de l' entreprise pour le projet;
+Exercice1: Titre: Liste des projets 
+Enoncé: 
 
+Votre patron veut identifier les projets réussis en cours dans votre entreprise,
+il vous a donc demandé de préparer une liste de tous les projets actuellement actifs et de leur revenu mensuel moyen.
+Vous avez stocké les informations sur ces projets dans une base de données simple avec une seule table Projets qui comporte cinq colonnes: 
+
+id_interne: l ''identifiant interne de l'' entreprise pour le projet;
 nom_projet: le nom officiel du projet;
-
-team_size: le nombre d 'employés travaillant sur le projet;
-team_lead: le nom du chef de projet;
+taille_equipe: le nombre d ''employés travaillant sur le projet;
+chef_equipe: le nom du chef de projet;
 revenu: le revenu mensuel moyen du projet.
 
-Question : Votre patron dit que les identifiants de projet internes ne sont pas pertinents pour lui et qu' il n 'est pas intéressé par la taille des équipes. Comme c' est le cas,
-il souhaite que vous créiez une autre table en supprimant les colonnes internal_id et team_size de la table Projects existante.Renvoyez - le trié par internal_id dans l 'ordre croissant.
+Question : 
+Votre patron dit que les identifiants de projet internes ne sont pas pertinents pour lui et qu''il n ''est pas intéressé par la taille des équipes. Comme c'' est le cas,
+il souhaite que vous créiez une autre table en supprimant les colonnes id_interne et taille_equipe de la table Projets existante.Renvoyez - le trié par id_interne dans l ''ordre croissant.
 
 Voici le contenu de la table 
-internal_id		project_name		team_size		team_lead	revenue
+id_interne		nom_projet		taille_equipe		chef_equipe	revenu
 1384			MapReduce		100			Jeffrey Dean	0
 2855			Windows			1000			Bill Gates	100500
 5961			Snapchat		3			Evan Spiegel	2000
@@ -646,15 +705,15 @@ internal_id		project_name		team_size		team_lead	revenue
 Exemple: 
 
 --sql creation
-	CREATE TABLE Projects (
-	internal_id INTEGER PRIMARY KEY NOT NULL,
-	project_name VARCHAR(200),
-	team_size INTEGER,
-	team_lead VARCHAR(200),
-	revenue INTEGER
+	CREATE TABLE Projets (
+	id_interne INTEGER PRIMARY KEY NOT NULL,
+	nom_projet VARCHAR(200),
+	taille_equipe INTEGER,
+	chef_equipe VARCHAR(200),
+	revenu INTEGER
 	);
 
-	INSERT INTO Projects VALUES (1384, "MapReduce",100,"Jeffrey Dean",0),
+	INSERT INTO Projets VALUES (1384, "MapReduce",100,"Jeffrey Dean",0),
 				(2855, "Windows",1000,"Bill Gates",100500),
 				(5961, "Snapchat",3,"Evan Spiegel",2000);
 
@@ -669,12 +728,12 @@ Sqldepart:
 
 Sqlreponse: 
 	SELECT 
-        project_name, 
-        team_lead, 
+        nom_projet, 
+        chef_equipe, 
         income 
     FROM 
-        Projects
-    ORDER BY internal_id;
+        Projets
+    ORDER BY id_interne;
 
 
 ### Exercice 3: 
@@ -763,80 +822,6 @@ ORDER BY
 ;
 
 Sqlreponse:
-    SELECT *
-    FROM 
-        countries 
-    WHERE 
-        continent = 'Africa'
-    ORDER BY 
-        name;
-	
-	
-
-### Exercice 4: 
-Titre: Equipes de projets
-
--- Enoncé :
-Vous avez été promu et affecté à un nouveau projet. Le problème est que vous ne savez pas avec qui vous travaillez et que votre prédécesseur a disparu sans laisser de trace! Heureusement, chaque projet de votre entreprise conserve sa propre base de données d'activités que vous allez utiliser pour connaître les noms de vos nouveaux collègues.
-
-Les informations sur l'activité du projet sont stockées dans la table projectLog, qui a la structure suivante:
-
-id: identifiant d'action unique;
-nom: le nom de la personne qui a effectué l'action;
-description: la description de l'action;
-horodatage: l'horodatage de l'action.
-Vous n'avez accès qu'à l'historique le plus récent du projet, mais cela devrait vous suffire. Vous avez décidé que trouver la meilleure personne pour interagir avec le projet pendant cette période était la meilleure façon de commencer.
-
-
--- Question :
-Étant donné la table projectLog, créez une nouvelle table de résultats avec une seule colonne de nom qui contient les noms des contributeurs du projet triés par ordre croissant.
-
--- Exemple: 
-Voici le contenue de la table projetLog
-id		nom				description				
-1		James Smith			ajouter un nouveau logo			
-2		John Johnson			mettre à jour la licence			
-3		John Johnson			corriger les fautes de frappe				
-4		James Smith			mettre à jour le logo				
-5		James Smith			supprimer l ancien logo			
-6		Michael Williams		réparer la construction	 		
-7		Mary Troppins			ajouter une nouvelle fonctionnalité		
-8		James Smith			corriger les polices				
-9		Richard Young			supprimer les fichiers inutiles	
-10		Michael Williams		ajouter des tests				
-
---sql creation
-	create table projectLog (
-		id INTEGER auto increment,
-		nom varchar(200),
-		description varchar(250)
-	);
-
-	insert into projectLog values (1,"James Smith","ajouter un nouveau logo"),
-		(2,"John Johnson","mettre à jour la licence"),
-		(3,"John Johnson","corriger les fautes de frappe"),
-		(4,"James Smith","mettre à jour le logo"),
-		(5,"James Smith","supprimer l ancien logo"),
-		(6,"Michael Williams","réparer la construction"),
-		(7,"Mary Troppins","ajouter une nouvelle fonctionnalité"),
-		(8,"James Smith","corriger les polices"),
-		(9,"Richard Young","supprimer les fichiers inutiles"),
-		(10,"Michael Williams","ajouter des tests");
-
--- Sqldepart:
-SELECT DISTINCT
-         
-    FROM
-        
-    ORDER BY ;
-
--- Sqlreponse:
-SELECT DISTINCT
-        nom 
-    FROM
-        projectLog
-    ORDER BY 
-        nom;
 SELECT
     *
 FROM
@@ -844,4 +829,76 @@ FROM
 WHERE
     continent = 'Africa'
 ORDER BY
-    name;
+    nom;
+
+### Exercice 4: 
+Titre: Equipes de projets -- Enoncé :
+Vous avez été promu et affecté à un nouveau projet.Le problème est que vous ne savez pas avec qui vous travaillez et que votre prédécesseur a disparu sans laisser de trace ! Heureusement,
+chaque projet de votre entreprise conserve sa propre base de données d 'activités que vous allez utiliser pour connaître les noms de vos nouveaux collègues.
+
+Les informations sur l' activité du projet sont stockées dans la table projectLog,
+qui a la structure suivante: id: identifiant d 'action unique;
+nom: le nom de la personne qui a effectué l' action;
+
+description: la description de l 'action;
+horodatage: l' horodatage de l 'action.
+Vous n' avez accès qu 'à l' historique le plus récent du projet,
+mais cela devrait vous suffire.Vous avez décidé que trouver la meilleure personne pour interagir avec le projet pendant cette période était la meilleure façon de commencer.-- Question :
+Étant donné la table projectLog,
+créez une nouvelle table de résultats avec une seule colonne de nom qui contient les noms des contributeurs du projet triés par ordre croissant.-- Exemple: 
+Voici le contenue de la table projetLog id nom description 1 James Smith ajouter un nouveau logo 2 John Johnson mettre à jour la licence 3 John Johnson corriger les fautes de frappe 4 James Smith mettre à jour le logo 5 James Smith supprimer l ancien logo 6 Michael Williams réparer la construction 7 Mary Troppins ajouter une nouvelle fonctionnalité 8 James Smith corriger les polices 9 Richard Young supprimer les fichiers inutiles 10 Michael Williams ajouter des tests --sql creation
+create table projectLog (
+    id INTEGER auto increment,
+    nom varchar(200),
+    description varchar(250)
+);
+
+insert into
+    projectLog
+values
+    (1, "James Smith", "ajouter un nouveau logo"),
+    (2, "John Johnson", "mettre à jour la licence"),
+    (
+        3,
+        "John Johnson",
+        "corriger les fautes de frappe"
+    ),
+    (4, "James Smith", "mettre à jour le logo"),
+    (5, "James Smith", "supprimer l ancien logo"),
+    (6, "Michael Williams", "réparer la construction"),
+    (
+        7,
+        "Mary Troppins",
+        "ajouter une nouvelle fonctionnalité"
+    ),
+    (8, "James Smith", "corriger les polices"),
+    (
+        9,
+        "Richard Young",
+        "supprimer les fichiers inutiles"
+    ),
+    (10, "Michael Williams", "ajouter des tests");
+
+-- Sqldepart:
+SELECT
+    DISTINCT
+FROM
+ORDER BY
+;
+
+-- Sqlreponse:
+SELECT
+    DISTINCT nom
+FROM
+    projectLog
+ORDER BY
+    nom;
+
+SELECT
+    *
+FROM
+    countries
+WHERE
+    continent = 'Africa'
+ORDER BY
+    nom;
