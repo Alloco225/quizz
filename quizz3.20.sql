@@ -88,3 +88,63 @@ limit
     1;
 
 -- select name from Products order by prix * quantite desc, name asc limit 1;
+
+
+
+## Tim Add Exercice
+
+
+Exercice1 :
+
+ Titre: Liste des projets
+
+ Enoncé : Votre patron veut identifier les projets réussis en cours dans votre entreprise, il vous a donc demandé de préparer une liste de tous les projets actuellement actifs et de leur revenu mensuel moyen.
+
+Vous avez stocké les informations sur ces projets dans une base de données simple avec une seule table Projets qui comporte cinq colonnes:
+
+internal_id: l'identifiant interne de l'entreprise pour le projet;
+nom_projet: le nom officiel du projet;
+team_size: le nombre d'employés travaillant sur le projet;
+team_lead: le nom du chef de projet;
+revenu: le revenu mensuel moyen du projet.
+
+Question : Votre patron dit que les identifiants de projet internes ne sont pas pertinents pour lui et qu'il n'est pas intéressé par la taille des équipes. Comme c'est le cas, il souhaite que vous créiez une autre table en supprimant les colonnes internal_id et team_size de la table Projects existante. Renvoyez-le trié par internal_id dans l'ordre croissant.
+
+id				nom_projet		taille_equipe	team_lead		income
+1384			MapReduce		100				Jeffrey Dean	0
+2855			Windows			1000			Bill Gates		100500
+5961			Snapchat		3				Evan Spiegel	2000
+
+
+Exemple: 
+
+--sql creation
+	CREATE TABLE Projects (
+	internal_id INTEGER PRIMARY KEY NOT NULL,
+	project_name VARCHAR(200),
+	team_size INTEGER,
+	team_lead VARCHAR(200),
+	revenue INTEGER
+	);
+
+	INSERT INTO Projects VALUES (1384, "MapReduce",100,"Jeffrey Dean",0),
+								(2855, "Windows",1000,"Bill Gates",100500),
+								(5961, "Snapchat",3,"Evan Spiegel",2000);
+
+
+Sqldepart: 
+	SELECT 
+        
+    FROM 
+        
+    ORDER BY ;
+
+
+Sqlreponse: 
+	SELECT 
+        project_name, 
+        team_lead, 
+        income 
+    FROM 
+        Projects
+    ORDER BY internal_id;
