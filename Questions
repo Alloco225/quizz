@@ -1,0 +1,85 @@
+Exercice TP8:
+
+Create table reponse (
+	id integer primary key auto_increment,
+	reponse_correcte varchar(250),
+	reponse_donnee varchar(250)
+);
+
+
+-- Question1:
+ Écrivez un programme qui vérifiera les réponses pour le dernier test.
+
+-- Sqldepart 
+	Select
+	from
+	where ;
+
+-- Sqlreponse 
+Select * 
+from reponse 
+where id in (select max(id) from reponse);
+
+
+-- Question2:
+ Selectionnez id et la reponse_donnee lorsque la reponse donnée est correcte.
+
+-- Sqldepart
+	Select
+	from
+	where ;
+
+-- Sqlreponse
+Select id, reponse_donnee 
+from reponse
+where reponse_donnee = reponse_correcte;
+
+
+-- Question3 : 
+ Remplacez tous les champs null de la colonne reponse_donnee par "aucune reponse donnée" et affichez le tableau complet.
+
+-- Sqldepart
+	update
+	set
+	where ;
+
+	Select
+	from
+	where ;
+
+-- Sqlreponse
+	update reponse
+		set reponse_donnee = "aucune reponse donnée"
+		where reponse_donnee like null;
+
+	Select * 
+	from reponse;
+  
+  
+  -- Question4 :
+ Selectionnez les cinq (5) premièrs enregistrements de la table reponse.
+
+-- Sqldepart
+	select
+	from
+	limit
+
+-- Sqlreponse
+select * 
+from reponse 
+limit 5;
+  
+  
+  -- Question5 :
+ Selectionnez les trois (3) premièrs enregistrements de la table reponse, pour lesquels la reponse donnée n est pas correct, rangés dans un ordre décroissant des id.
+
+-- Sqldepart
+	select
+	from
+	limit
+
+-- Sqlreponse
+select * 
+from reponse 
+where reponse_donnee = reponse_correcte
+limit 3;
