@@ -1,5 +1,10 @@
 
-hkrm2747
+Bienvenue NaNien 3.20
+
+Ce quizz est composé de 5 parties indépendantes avec 6 Questions chacunes.
+Il durera 30 min.
+
+
 
 méfaits
 countries
@@ -8,33 +13,28 @@ gestion projets
 bourse
 
 Partie 1:
-méfaits:
-mischievousNephews
 
-Vos neveux Huey Dewey et Louie restent avec vous pendant les vacances d 'hiver. Depuis leur arrivée,
+
+Vos neveux Natacha, Tony et Bruce restent avec vous pendant les vacances d 'hiver. Depuis leur arrivée,
 vous avez à peine eu une journée sans incident - les petits coquins font tout ce qu ' ils veulent !
 Vous avez décidé de suivre et d 'analyser leur comportement, vous avez donc créé la table des méfaits dans votre base de données locale. La table comporte les colonnes suivantes:
 
 date_mefait: la date du méfait (du type date);
 
-auteur: le neveu qui a causé le méfait ("Huey", "Dewey" ou "Louie");
+auteur: le neveu qui a causé le méfait ("Natacha", "Tony" ou "Bruce");
 
 titre: le titre du méfait.
 
 Il semble que chacun de vos neveux soit actif un jour spécifique de la semaine.--
 Vous décidez de vérifier votre théorie en créant un autre tableau comme suit: 
 
-Le tableau résultant doit contenir quatre colonnes,
-jour_semaine,
-date_mefait,
-auteur et titre,
-où jour_semaine est le jour de la semaine de date_mefait (
-    0 pour lundi,
-    1 pour mardi,
-    etc.avec 6 pour dimanche
-).
+Exemple
 
-mefait date_mefait auteur titre 2016 -12 -01 Dewey Faire cuire le poisson doré dans un seau 2016 -12 -01 Dewey Peindre les murs en rose 2016 -12 -01 Huey Manger tous les bonbons 2016 -12 -01 Louie Envelopper le chat dans du papier toilette 2016 -12 -08 Louie Jouer au hockey sur linoléum 2017 -01 -01 Huey Briser une fenetre 2017 -02 -06 Dewey Créer une patinoire sur le porche -- enonce
+mefait      
+date_mefait auteur titre 
+2012-10-06  Tony   Faire tomber la statue de marbre
+
+
 -- sql creation
 create table mefait(
     date_mefait date,
@@ -47,38 +47,126 @@ insert into
 values
     (
         '2016-12-01',
-        'Dewey',
+        'Tony',
         'Faire cuire le poisson doré dans un seau'
     ),
     (
         '2016-12-01',
-        'Dewey',
+        'Tony',
         'Peindre les murs en rose'
     ),
-    ('2016-12-01', 'Huey', 'Mange tous les bonbons'),
+    ('2016-11-25', 'Natacha', 'Mange tous les bonbons'),
     (
         '2016-12-01',
-        'Louie',
+        'Bruce',
         'Envelopper le chat dans du papier toilette'
     ),
     (
         '2016-12-08',
-        'Louie',
+        'Bruce',
         'Jouer au hockey sur linoléum'
     ),
-    ('2017-01-01', 'Huey', 'Briser une vitre'),
+    ('2017-01-01', 'Natacha', 'Briser une vitre'),
     (
         '2017-02-06',
-        'Dewey',
+        'Tony',
         'Créer une patinoire sur le porche'
     );
 
-questions
+Questions :
+
 1
+Combien de méfaits on été commis le 1e décembre 2016 ?
+
+select
+from
+where ;
+
+select
+    count(*)
+from
+  mefait
+where date_mefait = '2016-12-01';
+
+
 2
+Afficher la liste des méfaits de Natacha triés par les plus récents.
+
+select
+    titre
+from
+  mefait
+where auteur = 'Natacha'
+order by date_mefait desc;
+
+select
+    titre
+from
+  mefait
+where auteur = 'Natacha'
+order by date_mefait desc;
+
 3
+
+Qui a brisé la vitre de votre fenêtre préférée ?
+
+select
+from
+where
+like ;
+
+select
+    auteur
+from
+  mefait
+where titre like '%vitre%';
+
 4
+Quel est le méfait le plus ancien ?
+
+select
+from
+order by
+limit ;
+
+select
+    titre
+from
+  mefait
+order by date_mefait
+limit 1;
+
 5
+Qui a commis le dernier méfait ?
+
+select
+from
+order by
+limit ;
+
+select
+    auteur
+from
+  mefait
+order by date_mefait desc
+limit 1;
+
+6
+Un des neveux a peint les murs en rose, trouvez qui et à quelle date.
+
+select
+from
+where
+like
+;
+
+select
+    auteur, date_mefait
+from
+  mefait
+where titre like '%rose'
+;
+
 
 
 
@@ -134,7 +222,7 @@ WHERE
 ORDER BY
     nom;
 
-questions:
+Questions:
 1
 2
 3
@@ -144,7 +232,7 @@ questions:
 partie 3 : 
 
 
-questions :
+Questions :
 1
 2
 3
@@ -211,7 +299,7 @@ Sqlreponse:
     ORDER BY id_interne;
 
 
-questions :
+Questions :
 1
 2
 3
@@ -221,7 +309,7 @@ questions :
 partie 5 : bourse
 
 
-questions :
+Questions :
 1
 2
 3
