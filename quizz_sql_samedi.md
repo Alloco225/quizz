@@ -2,20 +2,13 @@
 Bienvenue NaNien 3.20
 
 Ce quizz est composé de 5 parties indépendantes avec 6 Questions chacunes.
-Il durera 30 min.
+Il durera 30 min. Ne perdez pas de temps à lire les énnoncés.
 
 
-
-méfaits
-countries
-
-gestion projets
-bourse
-
-Partie 1:
+PARTIE 1: 
 
 
-Vos neveux Natacha, Tony et Bruce restent avec vous pendant les vacances d 'hiver. Depuis leur arrivée,
+Vos neveux Natacha, Tony et Bruce restent avec vous pendant les congés de décembre. Depuis leur arrivée,
 vous avez à peine eu une journée sans incident - les petits coquins font tout ce qu ' ils veulent !
 Vous avez décidé de suivre et d 'analyser leur comportement, vous avez donc créé la table des méfaits dans votre base de données locale. La table comporte les colonnes suivantes:
 
@@ -46,29 +39,37 @@ insert into
     mefait(date_mefait, auteur, titre)
 values
     (
-        '2016-12-01',
+        '2018-12-01',
         'Tony',
         'Faire cuire le poisson doré dans un seau'
     ),
     (
-        '2016-12-01',
+        '2018-12-01',
         'Tony',
         'Peindre les murs en rose'
     ),
-    ('2016-11-25', 'Natacha', 'Mange tous les bonbons'),
     (
-        '2016-12-01',
+        '2018-11-25', 
+        'Natacha', 
+        'Manger tous les bonbons'
+    ),
+    (
+        '2018-12-01',
         'Bruce',
         'Envelopper le chat dans du papier toilette'
     ),
     (
-        '2016-12-08',
+        '2018-12-08',
         'Bruce',
         'Jouer au hockey sur linoléum'
     ),
-    ('2017-01-01', 'Natacha', 'Briser une vitre'),
     (
-        '2017-02-06',
+        '2019-01-01', 
+        'Natacha', 
+        'Briser ma vitre préférée'
+    ),
+    (
+        '2019-02-06',
         'Tony',
         'Créer une patinoire sur le porche'
     );
@@ -76,7 +77,7 @@ values
 Questions :
 
 1
-Combien de méfaits on été commis le 1e décembre 2016 ?
+Combien de méfaits on été commis le 1e décembre 2018 ?
 
 select
 from
@@ -86,7 +87,7 @@ select
     count(*)
 from
   mefait
-where date_mefait = '2016-12-01';
+where date_mefait = '2018-12-01';
 
 
 2
@@ -172,24 +173,25 @@ where titre like '%rose'
 
 
 
-partie 2:
-countries
+PARTIE 2:
 
-      
-### Exercice 2: 
-Titre: Selection des pays
 
-Enoncé :
 Votre ami veut devenir guide professionnel et voyager dans le monde entier. Dans la poursuite de ce rêve, elle s' est inscrite à l 'école des guides touristiques. Les professeurs de cette école se sont avérés très exigeants, et l' un d 'eux a confié à votre ami une tâche difficile qu' elle doit terminer au cours du week -
-end.Voici la tâche: étant donné une liste de pays,
-votre ami devrait identifier tous les pays qui sont en Afrique.Pour l 'aider, vous avez décidé d' écrire une fonction qui trouvera tous ces pays de n 'importe quel ensemble de pays. La table des pays dans laquelle les pays sont stockés a la structure suivante:
+end.
+
+La table des pays dans laquelle les pays sont stockés a la structure suivante:
+
 nom: le nom du pays;
 continent: le continent sur lequel le pays est situé;
-population: la population du pays.
+population: la population du pays;
 
-Question : Votre tâche consiste à renvoyer un nouveau tableau qui a les mêmes colonnes, mais qui ne contient que les pays d'' Afrique.Les pays doivent être classés par ordre alphabétique selon leur nom.Exemple: Voici le contenu de la table pays nom continent population Austria Europe 8767919 Belize North America 375909 Botswana Africa 2230905 Cambodia Asia 15626444 Cameroon Africa 22709892 --sql creation
--- 
---
+Exemple: 
+
+pays 
+nom                 continent       population 
+Autriche            Europe          8767919 
+Cote d'Ivoire       Afrique         24290582
+
 
 CREATE TABLE pays(
     nom varchar(200),
@@ -200,34 +202,90 @@ CREATE TABLE pays(
 insert into
     pays
 values
-    ("Austria", "Europe", 8767919),
-    ("Belize", "North America", 375909),
-    ("Botswana", "Africa", 2230905),
-    ("Cambodia", "Asia", 15626444),
-    ("Cameroon", "Africa", 22709892);
+    ("Autriche", "Europe", 8767919),
+    ("Cote d'Ivoire", "Afrique", 24290582),
+    ("Botswana", "Afrique", 2230905),
+    ("Cambodge", "Asie", 15626444),
+    ("Cameroon", "Afrique", 22709892);
 
-Sqldepart:
-SELECT
-WHERE
-ORDER BY
-;
-
-Sqlreponse:
-SELECT
-    *
-FROM
-    pays
-WHERE
-    continent = 'Africa'
-ORDER BY
-    nom;
 
 Questions:
 1
+Afficher les noms des pays d'afrique.
+
+select
+from
+where ;
+
+select nom
+from pays
+where continent = "Afrique";
+
 2
+Afficher les noms de deux pays où la population dépasse 10 millions.
+select
+from
+where
+limit;
+
+select nom
+from pays
+where population > 10000000
+limit 2;
+
 3
+Triez la table par ordre de population croissante.
+
+select
+from
+order by;
+
+select *
+from pays
+order by population;
+
 4
+Afficher les noms des pays dont la population est comprise entre 10 et 25 millions trié par noms croissants.
+
+select
+from
+where 
+and
+order by ;
+
+select nom
+from pays
+where population > 10000000 and population < 25000000
+order by nom asc;
+
 5
+Quel est le continent qui abrite le pays à la plus grande population ?
+
+select
+from
+order by
+limit ;
+
+select continent
+from pays
+order by population desc
+limit 1;
+
+6
+Quel est le nom, la population et le continent du pays le moins peuplé ?
+
+select
+from
+order by
+limit ;
+
+select nom, population, continent
+from pays
+order by population asc
+limit 1;
+
+
+
 
 partie 3 : 
 
