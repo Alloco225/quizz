@@ -43,7 +43,7 @@ select
 from
     resultats
 order by
-    wins;
+    victoires;
 
 -- Exercice 2 E7
 mostExpensive --
@@ -695,7 +695,7 @@ Question :
 Votre patron dit que les identifiants de projet internes ne sont pas pertinents pour lui et qu''il n ''est pas intéressé par la taille des équipes. Comme c'' est le cas,
 il souhaite que vous créiez une autre table en supprimant les colonnes id_interne et taille_equipe de la table Projets existante.Renvoyez - le trié par id_interne dans l ''ordre croissant.
 
-Voici le contenu de la table 
+Voici le contenu de la table Projets
 id_interne		nom_projet		taille_equipe		chef_equipe	revenu
 1384			MapReduce		100			Jeffrey Dean	0
 2855			Windows			1000			Bill Gates	100500
@@ -746,9 +746,9 @@ bourse: le montant de la bourse annuelle accordée à l' étudiant.Question: Vou
 créez la table résultante comme suit: La table doit avoir les mêmes colonnes que la table initiale,
 mais la colonne des bourses doit contenir le montant du versement mensuel de la bourse de l 'étudiant. Les rangées doivent être classées selon les identifiants des élèves.
 
-Exemple: Voici le contenu de la table bourse
+Exemple: Voici le contenu de la table bourses
 
-		id		scholarship
+		id		bourse
 		1		12000
 		2		18000
 		3		24000	
@@ -757,12 +757,12 @@ Exemple: Voici le contenu de la table bourse
 		6		13000
 
 	--sql creation
-	CREATE TABLE bourse(
-		id INTEGER auto increment,
+	CREATE TABLE bourses(
+		id INTEGER,
 		bourse INTEGER
 	);
 
-	insert into bourse values(1,12000),
+	insert into bourses values(1,12000),
 		(2,12000),
 		(3,18000),
 		(4,24000),
@@ -780,9 +780,9 @@ Sqldepart:
 
 Sqlreponse:
     SELECT 
-        id, scholarship / 12 as scholarship
+        id, bourse / 12 as bourse
     FROM 
-       scholarships
+       bourses
     ORDER BY 
         id;
       
@@ -791,16 +791,18 @@ Sqlreponse:
 Titre: Selection des pays
 
 Enoncé :
-Votre ami veut devenir guide professionnel et voyager dans le monde entier. Dans la poursuite de ce rêve, elle s' est inscrite à l 'école des guides touristiques. Les professeurs de cette école se sont avérés très exigeants, et l' un d 'eux a confié à votre amie une tâche difficile qu' elle doit terminer au cours du week -
+Votre ami veut devenir guide professionnel et voyager dans le monde entier. Dans la poursuite de ce rêve, elle s' est inscrite à l 'école des guides touristiques. Les professeurs de cette école se sont avérés très exigeants, et l' un d 'eux a confié à votre ami une tâche difficile qu' elle doit terminer au cours du week -
 end.Voici la tâche: étant donné une liste de pays,
 votre ami devrait identifier tous les pays qui sont en Afrique.Pour l 'aider, vous avez décidé d' écrire une fonction qui trouvera tous ces pays de n 'importe quel ensemble de pays. La table des pays dans laquelle les pays sont stockés a la structure suivante:
 nom: le nom du pays;
 continent: le continent sur lequel le pays est situé;
 population: la population du pays.
 
-Question : Votre tâche consiste à renvoyer un nouveau tableau qui a les mêmes colonnes, mais qui ne contient que les pays d' Afrique.Les pays doivent être classés par ordre alphabétique selon leur nom.Exemple: Voici le contenu de la table pays nom continent population Austria Europe 8767919 Belize North America 375909 Botswana Africa 2230905 Cambodia Asia 15626444 Cameroon Africa 22709892 --sql creation
+Question : Votre tâche consiste à renvoyer un nouveau tableau qui a les mêmes colonnes, mais qui ne contient que les pays d'' Afrique.Les pays doivent être classés par ordre alphabétique selon leur nom.Exemple: Voici le contenu de la table pays nom continent population Austria Europe 8767919 Belize North America 375909 Botswana Africa 2230905 Cambodia Asia 15626444 Cameroon Africa 22709892 --sql creation
+-- 
+--
+
 CREATE TABLE pays(
-    id INTEGER auto increment,
     nom varchar(200),
     continent varchar(200),
     population INTEGER
@@ -825,7 +827,7 @@ Sqlreponse:
 SELECT
     *
 FROM
-    countries
+    pays
 WHERE
     continent = 'Africa'
 ORDER BY
@@ -848,36 +850,40 @@ mais cela devrait vous suffire.Vous avez décidé que trouver la meilleure perso
 créez une nouvelle table de résultats avec une seule colonne de nom qui contient les noms des contributeurs du projet triés par ordre croissant.-- Exemple: 
 Voici le contenue de la table projetLog id nom description 1 James Smith ajouter un nouveau logo 2 John Johnson mettre à jour la licence 3 John Johnson corriger les fautes de frappe 4 James Smith mettre à jour le logo 5 James Smith supprimer l ancien logo 6 Michael Williams réparer la construction 7 Mary Troppins ajouter une nouvelle fonctionnalité 8 James Smith corriger les polices 9 Richard Young supprimer les fichiers inutiles 10 Michael Williams ajouter des tests --sql creation
 create table projectLog (
-    id INTEGER auto increment,
+    id INTEGER primary key auto_increment,
     nom varchar(200),
-    description varchar(250)
+    description varchar(250),
+    date date
 );
 
 insert into
     projectLog
 values
-    (1, "James Smith", "ajouter un nouveau logo"),
-    (2, "John Johnson", "mettre à jour la licence"),
+    (1, "James Smith", "ajouter un nouveau logo","2019-09-01"),
+    (2, "John Johnson", "mettre à jour la licence", "2019-10-01"),
     (
         3,
         "John Johnson",
-        "corriger les fautes de frappe"
+        "corriger les fautes de frappe",
+        "2019-11-01"
     ),
-    (4, "James Smith", "mettre à jour le logo"),
-    (5, "James Smith", "supprimer l ancien logo"),
-    (6, "Michael Williams", "réparer la construction"),
+    (4, "James Smith", "mettre à jour le logo", "2019-11-25"),
+    (5, "James Smith", "supprimer l ancien logo", "2019-11-25"),
+    (6, "Michael Williams", "réparer la construction", "2019-11-26"),
     (
         7,
         "Mary Troppins",
-        "ajouter une nouvelle fonctionnalité"
+        "ajouter une nouvelle fonctionnalité", "2019-11-29"
     ),
-    (8, "James Smith", "corriger les polices"),
+    (8, "James Smith", "corriger les polices", "2019-12-03"),
     (
         9,
         "Richard Young",
-        "supprimer les fichiers inutiles"
+        "supprimer les fichiers inutiles", "2019-12-03"
     ),
-    (10, "Michael Williams", "ajouter des tests");
+    (10, "Michael Williams", "ajouter des tests", "2019-12-16"),
+    (11, "Amane Hosanna", "composer vos exercices sql", "2019-12-19"),
+    (12, "Timoté Akanji", "ajouter plus d'exercices sql", "2019-12-19");
 
 -- Sqldepart:
 SELECT
@@ -891,14 +897,5 @@ SELECT
     DISTINCT nom
 FROM
     projectLog
-ORDER BY
-    nom;
-
-SELECT
-    *
-FROM
-    countries
-WHERE
-    continent = 'Africa'
 ORDER BY
     nom;
