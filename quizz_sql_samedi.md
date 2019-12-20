@@ -5,12 +5,15 @@ Ce quizz est composé de 5 parties indépendantes avec 6 Questions chacunes.
 Il durera 30 min. Ne perdez pas de temps à lire les énnoncés.
 
 
+
 PARTIE 1: 
 
 
 Vos neveux Natacha, Tony et Bruce restent avec vous pendant les congés de décembre. Depuis leur arrivée,
 vous avez à peine eu une journée sans incident - les petits coquins font tout ce qu ' ils veulent !
-Vous avez décidé de suivre et d 'analyser leur comportement, vous avez donc créé la table des méfaits dans votre base de données locale. La table comporte les colonnes suivantes:
+Vous avez décidé de suivre et d 'analyser leur comportement, vous avez donc créé la table des méfaits dans votre base de données locale. 
+
+La table mefait comporte les colonnes suivantes:
 
 date_mefait: la date du méfait (du type date);
 
@@ -18,8 +21,6 @@ auteur: le neveu qui a causé le méfait ("Natacha", "Tony" ou "Bruce");
 
 titre: le titre du méfait.
 
-Il semble que chacun de vos neveux soit actif un jour spécifique de la semaine.--
-Vous décidez de vérifier votre théorie en créant un autre tableau comme suit: 
 
 Exemple
 
@@ -28,7 +29,6 @@ date_mefait auteur titre
 2012-10-06  Tony   Faire tomber la statue de marbre
 
 
--- sql creation
 create table mefait(
     date_mefait date,
     auteur varchar(50),
