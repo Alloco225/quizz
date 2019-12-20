@@ -22,7 +22,7 @@ auteur: le neveu qui a causé le méfait ("Natacha", "Tony" ou "Bruce");
 titre: le titre du méfait.
 
 
-Exemple
+Voici un exemple du contenu de la table
 
 mefait      
 date_mefait auteur titre 
@@ -185,7 +185,7 @@ nom: le nom du pays;
 continent: le continent sur lequel le pays est situé;
 population: la population du pays;
 
-Exemple: 
+Voici un exemple du contenu de la table: 
 
 pays 
 nom                 continent       population 
@@ -287,74 +287,137 @@ limit 1;
 
 
 
-partie 3 : 
-
-
-Questions :
-1
-2
-3
-4
-5
-
-partie 4 : gestion projets
-
-Liste des projets 
-Enoncé: 
+PARTIE 3 : 
 
 Votre patron veut identifier les projets réussis en cours dans votre entreprise,
 il vous a donc demandé de préparer une liste de tous les projets actuellement actifs et de leur revenu mensuel moyen.
 Vous avez stocké les informations sur ces projets dans une base de données simple avec une seule table Projets qui comporte cinq colonnes: 
 
-id_interne: l ''identifiant interne de l'' entreprise pour le projet;
+id_interne: l 'identifiant interne de l' entreprise pour le projet;
 nom_projet: le nom officiel du projet;
-taille_equipe: le nombre d ''employés travaillant sur le projet;
+taille_equipe: le nombre d 'employés travaillant sur le projet;
 chef_equipe: le nom du chef de projet;
 revenu: le revenu mensuel moyen du projet.
 
-Question : 
-Votre patron dit que les identifiants de projet internes ne sont pas pertinents pour lui et qu''il n ''est pas intéressé par la taille des équipes. Comme c'' est le cas,
-il souhaite que vous créiez une autre table en supprimant les colonnes id_interne et taille_equipe de la table Projets existante.Renvoyez - le trié par id_interne dans l ''ordre croissant.
 
-Voici le contenu de la table Projets
-id_interne		nom_projet		taille_equipe		chef_equipe	revenu
-1384			MapReduce		100			Jeffrey Dean	0
-2855			Windows			1000			Bill Gates	100500
-5961			Snapchat		3			Evan Spiegel	2000
+Voici le contenu de la table 
+Projets
+id_interne		nom_projet		taille_equipe		chef_equipe	    revenu
+1384			MapReduce		100			        Jeffrey Dean	0
+2855			Windows			1000			    Bill Gates	    100500
+5961			Snapchat		3			        Evan Spiegel	2000
 
 
-Exemple: 
-
---sql creation
-	CREATE TABLE Projets (
+CREATE TABLE Projets (
 	id_interne INTEGER PRIMARY KEY NOT NULL,
 	nom_projet VARCHAR(200),
 	taille_equipe INTEGER,
 	chef_equipe VARCHAR(200),
 	revenu INTEGER
-	);
+);
 
-	INSERT INTO Projets VALUES (1384, "MapReduce",100,"Jeffrey Dean",0),
-				(2855, "Windows",1000,"Bill Gates",100500),
-				(5961, "Snapchat",3,"Evan Spiegel",2000);
+INSERT INTO Projets 
+VALUES 
+(
+    1384, 
+    "MapReduce",
+    100,
+    "Jeffrey Dean"
+    ,0
+),
+(
+    2855, 
+    "Windows",
+    1000,
+    "Bill Gates",
+    100500
+),
+(
+    5961, 
+    "Snapchat",
+    3,
+    "Evan Spiegel",
+    2000
+);
+
+Questions :
+
+1
+Quel est le dernier projet en cours ?
+
+select
+from
+order by
+limit ;
+
+select nom_projet
+from Projets
+order by id_interne desc
+limit 1;
+
+2
+Qui est le chef de projet qui rapporte le plus d'argent à l'entreprise ?
+
+select
+from
+order by
+limit ;
+
+select chef_equipe
+from Projets
+order by revenu desc
+limit 1;
 
 
-Sqldepart: 
-	SELECT 
-        
-    FROM 
-        
-    ORDER BY ;
+3
+Combien de membres comporte l'équipe la plus petite ?
+
+select
+from
+order by
+limit 1;
+
+select taille_equipe
+from Projets
+order by taille_equipe asc
+limit 1;
+
+4
+Quel est le nom du chef, la taille d'equipe et le revenu du projet Snapchat ?
+
+select
+from
+where ;
+
+select chef_equipe, taille_equipe, revenu
+from Projets
+where nom_projet = 'Snapchat';
+
+5
+Un des projets n'a rien rapporté, quel est le nom de ce projet et qui le dirige ?
+
+select
+from
+where ;
+
+select nom_projet, chef_equipe
+from Projets
+where revenu = 0;
+
+6
+Quel est le projet que dirige un certain Bill ?
+
+select
+from
+where
+like ;
+
+select nom_projet
+from Projets
+where chef_equipe like "%Bill%";
 
 
-Sqlreponse: 
-	SELECT 
-        nom_projet, 
-        chef_equipe, 
-        income 
-    FROM 
-        Projets
-    ORDER BY id_interne;
+partie 4 : bourse
 
 
 Questions :
@@ -364,7 +427,8 @@ Questions :
 4
 5
 
-partie 5 : bourse
+
+partie 5 : 
 
 
 Questions :
