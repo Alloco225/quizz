@@ -83,3 +83,19 @@ select *
 from reponse 
 where reponse_donnee = reponse_correcte
 limit 3;
+
+PARTIE 3
+
+Soit le modèle relationnel suivant relatif à la gestion des notes annuelles d’une promotion d’étudiants :
+— ETUDIANT(NEtudiant, Nom, Prénom)
+— MATIERE(CodeMat, LibelléMat, CoeffMat)
+— EVALUER(#NEtudiant, #CodeMat, Date, Note)
+Remarque : les clés primaires sont soulignées et les clés étrangères sont marquées par #
+Exprimez en SQL les requêtes suivantes :
+
+1. Quel est le nombre total d’étudiants ? 
+SELECT count(*) FROM ETUDIANT
+
+2. Quelles sont, parmi l’ensemble des notes, la note la plus haute et la note la plus basse ? 
+SELECT MIN(Note) as ’plus basse note’, MAX(Note) as ’plus haute note’ FROM EVALUER
+
