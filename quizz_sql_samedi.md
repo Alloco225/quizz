@@ -512,3 +512,100 @@ WHERE ;
 SELECT nom
     FROM pays
     WHERE population < 200000;
+
+## Tim Ajout Exo 18
+
+EXO 18:
+
+/*Vous avez récemment commencé à travailler dans le service informatique d'un grand magasin. Vous avez été mis en charge de la base de données d'inventaire article_dispo, qui a la structure suivante:
+
+id: ID d'article unique;
+nom_article: le nom de l'article;
+type_article: le type de l'article.
+Notez qu'il est possible que des articles de types différents portent le même nom.
+
+L'une des opérations les plus courantes effectuées sur cette base de données consiste à interroger le nombre d'articles spécifiques disponibles dans le magasin. La base de données étant assez volumineuse, les requêtes de ce type peuvent prendre trop de temps. Vous avez décidé de résoudre ce problème en créant une nouvelle table contenant le nombre d'articles pour tous les articles disponibles.
+
+Compte tenu de la table article_dispo, composez une table de résultats qui comporte les trois colonnes suivantes: nom_article, type_article et nombre_article, contenant respectivement les noms des articles, leurs types et la quantité de ces articles. Le tableau doit être trié par ordre croissant par type d'article, les articles du même type étant triés par ordre croissant par leur nom.
+*/
+
+Create table article_dispo(
+	id integer primary key auto_increment,
+	nom_article varchar(250),
+	type_article varchar(250)
+);
+
+insert into article_dispo values(1,"SafeDisk 4GB","USB drive"),	
+	(2,"SafeDisk 8GB","USB drive"),
+	(3,"Cinco 50-Pack","DVD"),
+	(4,"SafeDisk 4GB","Memory card"),
+	(5,"SafeDisk 8GB","Memory card"),
+	(6,"Cinco 30-Pack","DVD"),
+	(7,"SafeDisk 4GB","Memory card"),
+	(8,"SafeDisk 4GB","Memory card"),
+	(9,"DiskHolder","Misc"),
+	(10,"Cinco 50-Pack","DVD"),
+	(11,"SafeDisk 4GB","USB drive"),
+	(12,"DiskCleaner Pro","Misc");
+
+
+Questions :
+
+1) Ecrivez une requète qui retourne les articles groupés et ordonné par type.
+
+-- sqldepart
+SELECT
+	GROUP BY 
+	ORDER BY ;
+--sqlreponse
+SELECT type_article
+	FROM article_dispo
+	GROUP BY type_article
+	ORDER BY type_article;
+
+2) Ecrivez une requète qui retourne les informations sur les articles dont la longueur du nom est comprise entre celle du type + ou - 4.
+
+-- sqldepart
+SELECT 
+	FROM 
+	WHERE ;
+--sqlreponse
+SELECT * 
+	FROM article_dispo
+	WHERE LENGTH(nom_article) BETWEEN LENGTH(type_article)-4 AND LENGTH(type_article)+4
+
+3) Ecrivez une requète qui retourne les 7 premiers articles ordonnés par leur nom.
+
+-- sqldepart
+SELECT
+	FROM
+	ORDER BY
+	LIMIT ;
+--sqlreponse
+SELECT * 
+	FROM article_dispo
+	ORDER BY nom_article
+	LIMIT 7;
+
+4) Ecrivez une requète qui compte les articles dont le nom comporte la chaine "SafeDisk".
+
+-- sqldepart
+--sqlreponse
+SELECT * 
+	FROM article_dispo 
+	WHERE nom_article like "%SafeDisk%";
+
+
+5)Composez une table de résultats qui comporte les trois colonnes suivantes: nom_article, type_article et nombre_article, contenant respectivement les noms des articles, leurs types et la quantité de ces articles. Le tableau doit être trié par ordre croissant par type d article, les articles du même type(groupés) étant triés par ordre croissant par leur nom.
+
+-- sqldepart
+SELECT
+	FROM
+	GROUP BY
+	ORDER BY ;
+--sqlreponse
+SELECT nom_article, type_article, COUNT(type_article) as nombre_article
+    FROM article_dispo
+    GROUP BY type_article, nom_article
+    ORDER BY type_article;
+
