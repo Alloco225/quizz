@@ -437,3 +437,78 @@ Questions :
 3
 4
 5
+
+Exo 17:
+
+/*Votre ami veut devenir guide professionnel et voyager dans le monde entier. Dans la poursuite de ce rêve, elle s'est inscrite à l'école des guides touristiques. Les professeurs de cette école se sont avérés très exigeants et l'un d'eux a confié à votre amie une tâche difficile qu'elle doit terminer au cours du week-end.
+
+Voici la tâche: étant donné une liste de pays, votre ami doit calculer la population moyenne et la population totale de tous les pays de la liste. Pour l'aider, vous avez décidé d'écrire une fonction qui calculera les valeurs requises pour un certain nombre de pays. La table des pays dans laquelle les pays sont stockés a la structure suivante:
+
+nom: le nom du pays;
+continent: le continent sur lequel le pays est situé;
+population: la population du pays.
+Votre tâche consiste à renvoyer un nouveau tableau qui contient le nombre de pays dans la liste donnée, ainsi que leur population moyenne et totale, dans les colonnes intitulées nombre, moyenne et total.
+*/
+Create table pays (
+	id integer primary key auto_increment,
+	nom varchar(100),
+	continent varchar(100),
+	population integer
+);
+
+insert into pays values(1,"Grenada","North America",103328),
+	(2,"Monaco","Europe",38400),
+	(3,"San Marino","Europe",33005),
+	(4,"Vanuatu","Australia",277500);
+
+Questions :
+
+1) Ecrivez une requète qui compte le nombre de pays et l affiche dans une colone nombre.
+
+-- sqldepart
+SELECT 
+FROM ;
+--sqlreponse
+SELECT COUNT(*) nombre 
+    FROM pays;
+
+2) Ecrivez une requète qui calcule la moyenne des population et l affiche dans une colone moyenne.
+
+-- sqldepart
+SELECT 
+FROM ;
+--sqlreponse
+SELECT AVG(population) as moyenne 
+    FROM pays;
+
+3) Ecrivez une requète qui calcule la somme des population et l affiche dans une colone total.
+
+-- sqldepart
+SELECT 
+FROM ;
+--sqlreponse
+SELECT SUM(population) as total 
+    FROM pays;
+
+4) Ecrivez une requète qui retourne la somme et la moyenne des populations supérieurs à 50000 dans les colonnes total2 et moyenne2.
+
+
+-- sqldepart
+SELECT 
+FROM 
+WHERE ;
+--sqlreponse
+SELECT SUM(population) as total2,AVG(population) as moyenne2
+    FROM pays
+    WHERE population > 50000;
+
+5) Ecrivez une requète qui retourne le nom du pays dont la population est inférieur à 200000.
+
+-- sqldepart
+SELECT 
+FROM 
+WHERE ;
+--sqlreponse
+SELECT nom
+    FROM pays
+    WHERE population < 200000;
