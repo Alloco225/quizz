@@ -4,8 +4,6 @@ Bienvenue NaNien 3.20
 
 Ceci est le dernier test. Restez concentrés et bonne chance.
 
-
-
 create table Adresses(
     id int primary key auto_increment,
     lieu varchar(250)
@@ -30,8 +28,7 @@ insert into Adresses(
 
 create table Matieres(
     id int primary key auto_increment,
-    nom varchar(50),
-    coefficient int
+    nom varchar(50)
 );
 
 insert into Matieres(
@@ -46,7 +43,6 @@ insert into Matieres(
 ("SQL"),
 ("Langage R"),
 ("C#"),
-("Go"),
 ("Python"),
 ("Html CSS JS");
 
@@ -78,9 +74,6 @@ insert into MatiereSpecialite(
 ) values
 (1, 1, 5),
 (1, 3, 3),
-(1, 4, 5),
-(1, 5, 10),
-(1, 6, 7),
 (1, 7, 1),
 (1, 8, 10),
 (1, 9, 7);
@@ -90,8 +83,6 @@ insert into MatiereSpecialite(
     matiere_id,
     coefficient
 ) values
-(2, 1, 1),
-(2, 3, 7),
 (2, 4, 8),
 (2, 6, 2),
 (2, 7, 4),
@@ -104,7 +95,6 @@ insert into MatiereSpecialite(
 ) values
 (3, 3, 10),
 (3, 4, 10),
-(3, 7, 8),
 (3, 13, 5);
 
 insert into MatiereSpecialite(
@@ -113,8 +103,6 @@ insert into MatiereSpecialite(
     coefficient
 ) values
 (4, 1, 5),
-(4, 2, 3),
-(4, 3, 3),
 (4, 4, 7),
 (4, 6, 10),
 (4, 7, 4),
@@ -127,8 +115,6 @@ insert into MatiereSpecialite(
     coefficient
 ) values
 (5, 1, 5),
-(5, 2, 3),
-(5, 3, 3),
 (5, 4, 7),
 (5, 6, 10),
 (5, 7, 4),
@@ -142,8 +128,6 @@ insert into MatiereSpecialite(
 ) values
 (6, 1, 2),
 (6, 2, 2),
-(6, 3, 3),
-(6, 4, 7),
 (6, 6, 8),
 (6, 7, 4),
 (6, 8, 7),
@@ -187,8 +171,7 @@ insert into Niveaux(
     nom
 ) values
 ("2nde"),
-("1ere"),
-("Tle");
+("1ere");
 
 create table Series(
     id int primary key auto_increment,
@@ -199,8 +182,7 @@ create table Series(
 insert into Series(nom, description)
 values
 ("L", "Litteraire"),
-("S", "Scientifique"),
-("T", "Technique");
+("S", "Scientifique");
 
 create table NiveauSerie(
     id int primary key auto_increment,
@@ -213,15 +195,9 @@ insert into NiveauSerie(
 ) values
 (1,1),
 (1,2),
-(1,3),
 --
 (2,1),
-(2,2),
-(2,3),
---
-(3,1),
-(3,2),
-(3,3);
+(2,2);
 
 create table Grades(
     id int primary key auto_increment,
@@ -276,18 +252,13 @@ create table Enseigner(
 insert into Enseigner(matricule, matiere_id)
 values
 (1,1),
-(1,2),
 (1,3),
 -- 
 (2,4),
-(2,5),
-(2,6),
 (2,11),
 -- 
 (2,7),
 (2,8),
-(2,9),
-(2,10),
 -- 
 (4,12),
 (4,13);
@@ -316,7 +287,7 @@ insert into Educateurs(
     3
 ),
 (
-    "Soro N'Gbe",
+    "Soro N'be",
     "+158254534",
     7
 );
@@ -355,54 +326,6 @@ insert into Etudiants(
     parent_id,
     classe_id
 ) values
-(
-		"Alan Callahan",
-		"1999/10/25",
-		"M",
-		4,
-		5,
-		9
-	),
-	(
-		"Upton Monroe",
-		"1999/06/04",
-		"M",
-		2,
-		10,
-		5
-	),
-	(
-		"Prescott Malone",
-		"1999/10/24",
-		"M",
-		5,
-		8,
-		5
-	),
-	(
-		"Carl Holloway",
-		"1999/09/29",
-		"M",
-		6,
-		6,
-		5
-	),
-	(
-		"Griffith Serrano",
-		"2000/01/22",
-		"M",
-		5,
-		10,
-		5
-	);
-insert into Etudiants(
-    nom,
-    date_naissance,
-    genre,
-    specialite_id,
-    parent_id,
-    classe_id
-) values
 	(
 		"Nolan Solis",
 		"1999/07/16",
@@ -412,14 +335,6 @@ insert into Etudiants(
 		7
 	),
 	(
-		"Dorian Farrell",
-		"2000/02/16",
-		"M",
-		2,
-		11,
-		6
-	),
-	(
 		"Rahim Barrera",
 		"1999/08/17",
 		"M",
@@ -427,62 +342,7 @@ insert into Etudiants(
 		10,
 		4
 	);
-insert into Etudiants(
-    nom,
-    date_naissance,
-    genre,
-    specialite_id,
-    parent_id,
-    classe_id
-) values
-	(
-		"Dominic Wise",
-		"1999/11/22",
-		"M",
-		3,
-		1,
-		7
-	),
-	(
-		"Jesse Bryant",
-		"1999/04/10",
-		"M",
-		2,
-		9,
-		10
-	),
-	(
-		"Oscar Beard",
-		"1999/02/14",
-		"M",
-		6,
-		3,
-		9
-	),
-	(
-		"Ishmael Macias",
-		"1999/05/08",
-		"M",
-		5,
-		8,
-		1
-	),
-	(
-		"Otto Wynn",
-		"1999/12/24",
-		"M",
-		4,
-		7,
-		6
-	),
-	(
-		"Lester Weeks",
-		"1999/04/15",
-		"M",
-		4,
-		5,
-		4
-	);
+
 insert into Etudiants(
     nom,
     date_naissance,
@@ -498,14 +358,6 @@ insert into Etudiants(
 		2,
 		6,
 		2
-	),
-	(
-		"Hoyt Reid",
-		"1999/01/03",
-		"M",
-		6,
-		2,
-		4
 	),
 	(
 		"Hamilton Gamble",
@@ -539,22 +391,6 @@ insert into Etudiants(
     parent_id,
     classe_id
 ) values
-(
-		"Heather Bonner",
-		"1999/04/01",
-		"F",
-		6,
-		3,
-		8
-	),
-	(
-		"Jorden Clark",
-		"1999/07/18",
-		"F",
-		5,
-		6,
-		7
-	),
 	(
 		"Sara Villarreal",
 		"2000/01/20",
@@ -571,110 +407,6 @@ insert into Etudiants(
 		4,
 		4
 	);
-insert into Etudiants(
-    nom,
-    date_naissance,
-    genre,
-    specialite_id,
-    parent_id,
-    classe_id
-) values
-	(
-		"Barbara Guy",
-		"2000/01/11",
-		"F",
-		1,
-		1,
-		3
-	),
-	(
-		"Nina Dillard",
-		"1999/10/16",
-		"F",
-		3,
-		10,
-		10
-	),
-	(
-		"Lacota Sargent",
-		"1998/12/14",
-		"F",
-		6,
-		3,
-		10
-	),
-	(
-		"Ginger David",
-		"1999/09/10",
-		"F",
-		2,
-		7,
-		2
-	),
-	(
-		"Bianca Morgan",
-		"1999/01/16",
-		"F",
-		2,
-		8,
-		1
-	),
-	(
-		"Georgia Silva",
-		"2000/02/13",
-		"F",
-		3,
-		2,
-		4
-	),
-	(
-		"Jacqueline Gilbert",
-		"1999/08/25",
-		"F",
-		5,
-		2,
-		4
-	);
-insert into Etudiants(
-    nom,
-    date_naissance,
-    genre,
-    specialite_id,
-    parent_id,
-    classe_id
-) values
-	(
-		"Alexis Watson",
-		"1999/08/07",
-		"F",
-		6,
-		1,
-		9
-	),
-	(
-		"Gemma Mullins",
-		"1999/12/02",
-		"F",
-		5,
-		5,
-		2
-	),
-	(
-		"Tatyana Mcpherson",
-		"1999/11/12",
-		"F",
-		5,
-		10,
-		3
-	),
-	(
-		"Anika Lloyd",
-		"1999/07/08",
-		"F",
-		2,
-		8,
-		4
-	);
 
 create table Notes(
     matricule int,
@@ -683,14 +415,182 @@ create table Notes(
 );
 
 
+insert into Notes(
+    matricule,
+    matiere_id,
+    note
+)
+values
+	(
+		4,
+		8,
+		7
+	),
+	(
+		7,
+		11,
+		5
+	);
+insert into Notes(
+    matricule,
+    matiere_id,
+    note
+)
+values
+	(
+		12,
+		12,
+		3
+	);
+insert into Notes(
+    matricule,
+    matiere_id,
+    note
+)
+values
+	(
+		2,
+		11,
+		4
+	),
+	(
+		12,
+		3,
+		9
+	);
+insert into Notes(
+    matricule,
+    matiere_id,
+    note
+)
+values
+	
+	(
+		6,
+		11,
+		15
+	),
+	(
+		4,
+		5,
+		18
+	);
+insert into Notes(
+    matricule,
+    matiere_id,
+    note
+)
+values
+	(
+		10,
+		11,
+		5
+	),
+	(
+		6,
+		10,
+		17
+	),
+	(
+		4,
+		10,
+		8
+	);
+insert into Notes(
+    matricule,
+    matiere_id,
+    note
+)
+values
+	(
+		12,
+		9,
+		20
+	),
+	(
+		4,
+		4,
+		9
+	);
+insert into Notes(
+    matricule,
+    matiere_id,
+    note
+)
+values
+	(
+		10,
+		10,
+		16
+	),
+	(
+		8,
+		12,
+		17
+	);
+    insert into Notes(
+    matricule,
+    matiere_id,
+    note
+)
+values
+	(
+		4,
+		3,
+		7
+	),
+	(
+		2,
+		3,
+		10
+	);
 
- 1. Nom et coefficient des matières par spécialité.
 
- 2. L'addresse et le telephone des parents dont les étudiants ont une moyenne entre 4 et 8.
 
- 3. Supprimer de la base de donnée les étudiants dont la moyenne est inférieure à 4.
 
- 4. La liste des étudiants dont le nom commence par Barbara et qui sont dans la classe 3
+ 1. Nom matière, nom spécialité et coefficient des matières groupées par spécialité puis par matières.
+
+select M.nom, S.nom, MS.coefficient from MatiereSpecialite MS
+join Matieres M
+on MS.matiere_id = M.id
+join Specialites S
+on MS.specialite_id = S.id
+group by S.nom, M.nom;
+
+
+ 2. Le nom, le lieu d'habitation et le contact des parents dont les étudiants ont une moyenne entre 4 et 8.
+
+ select nom, lieu, contact
+from Parents P
+join Adresses A
+on P.adresse_id = A.id
+where P.id in (
+select E.parent_id
+from Notes N
+join Etudiants E
+on N.matricule = E.matricule
+where note > 4 and note < 8);
+
+
+ 3. Supprimer de la base de donnée les étudiants dont la moyenne est entre 8 et 10.
+
+
+delete from 
+Etudiants 
+where matricule in(
+  select matricule from
+  Notes
+where note>8 and note < 10);
+
+
+ 4. Afficher les noms des Etudiants qui n'ont pas de notes
+ select * from Etudiants
+where matricule not in (
+select matricule 
+from Notes);
+
+ 4. Donner 2 comme note en SQL au plus jeune étudiant n'ayant pas de note
+ 
 
  5. Le nombre des étudiants qui ont comme matière Algorithmique avec un coefficient de 10
 
