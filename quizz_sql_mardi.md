@@ -263,6 +263,12 @@ create table Grades(
     salaire int
 );
 
+insert into Grades(nom, salaire)
+values
+("Debutant", 200000),
+("Intermediaire", 300000),
+("Avance", 400000);
+
 create table Professeurs(
     matricule int primary key auto_increment,
     nom varchar(50),
@@ -271,10 +277,56 @@ create table Professeurs(
     addresse_id int
 );
 
+insert into Professeurs(
+    nom,
+    contact, 
+    addresse_id
+) values
+(
+    "Amombra",
+     "+8107095704",
+     8
+),
+(
+    "Katche",
+     "+2250248192",
+     8
+),
+(
+    "Opportune",
+     "+3302325713",
+     8
+),
+(
+    "MayChan",
+     "+8103485670",
+     8
+);
+
 create table Enseigner(
     matricule int,
-    id_matière int
-)
+    id_matiere int
+);
+
+insert into Enseigner(matricule, id_matiere)
+values
+(1,1),
+(1,2),
+(1,3),
+-- 
+(2,4),
+(2,5),
+(2,6),
+(2,11),
+-- 
+(2,7),
+(2,8),
+(2,9),
+(2,10),
+-- 
+(4,12),
+(4,13);
+-- 
 
 create table Educateurs(
     matricule int primary key auto_increment,
