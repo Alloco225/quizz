@@ -201,21 +201,61 @@ insert into Parents(
     addresse_id
 ) values
 ("Alfred Aldebarand", "+22501010101", "Alchemiste", 1),
-("Edward Elric", "", "Alchemiste d'Etat", 2),
-("", "", "", ),
-("", "", "", ),
-("", "", "", ),
-("", "", "", ),
-("", "", "", ),
-("", "", "", ),
-("", "", "", ),
-("", "", "", ),
-("", "", "", );
+("Edward Elric", "+8101010101", "Alchemiste d'Etat", 2),
+("Peter Parker", "+0101010101", "Photographe", 6),
+("Jack Bauer", "+23301030101", "Cellule AntiTerroriste", 2),
+("James Bond", "+22501017631", "MI V", 4),
+("Jason Bourne", "+22501010102", "Project GladStone", 5),
+("Jack Reacher", "+22500710103", "Rogue Agent", 6),
+("Ethan Hunt", "+22501710104", "MIF", 6),
+("Winter Soldier", "+22501310301", "Hydra", 10),
+("Maria Hills", "+8101015601", "Agent du Shield", 9),
+("Fury Nick Nicolas J.", "+8102415701", "Patron des Avengers lol", 8);
 
 create table Niveaux(
     id int primary key auto_increment,
     nom varchar(20)
 );
+
+insert into Niveaux(
+    nom
+) values
+("2nde"),
+("1ere"),
+("Tle");
+
+create table Series(
+    id int primary key auto_increment,
+    nom varchar(30),
+    description varchar(225)
+);
+
+insert into Series(nom, description)
+values
+("L", "Litteraire"),
+("S", "Scientifique"),
+("T", "Technique");
+
+create table NiveauSerie(
+    id int primary key auto_increment,
+    niveau_id int,
+    serie_id int
+);
+insert into NiveauSerie(
+    niveau_id,
+    serie_id
+) values
+(1,1),
+(1,2),
+(1,3),
+--
+(2,1),
+(2,2),
+(2,3),
+--
+(3,1),
+(3,2),
+(3,3);
 
 create table Grades(
     id int primary key auto_increment,
